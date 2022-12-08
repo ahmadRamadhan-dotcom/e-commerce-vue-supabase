@@ -3,7 +3,8 @@
     class="absolute hidden group-hover:flex items-center gap-2 left-[45%] top-[45%] -translate-x-[50%] z-[30] -translate-y-[50%]"
   >
     <div
-      class="bg-white hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex justify-center items-center rounded-md"
+      id="container"
+      class="bg-white hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex relative justify-center items-center rounded-md"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,9 +19,13 @@
           d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
         />
       </svg>
+      <div class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md">
+        <p class="text-center text-white text-[12px]">View</p>
+      </div>
     </div>
     <div
-      class="bg-white hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex justify-center items-center rounded-md"
+      id="container"
+      class="bg-white relative hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex justify-center items-center rounded-md"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +38,18 @@
         <path
           d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
         />
+        <div
+          class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md"
+        >
+          <p class="text-center text-white text-[12px]">Whislist</p>
+        </div>
       </svg>
     </div>
   </div>
 </template>
+
+<style scoped>
+#container:hover .tooltip {
+  display: block;
+}
+</style>
