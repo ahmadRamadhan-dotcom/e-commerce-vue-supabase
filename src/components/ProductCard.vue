@@ -1,15 +1,14 @@
 <template>
   <div
+    v-for="(product, index) in products"
+    :key="index"
     class="border border-gray-200 group hover:border-green-400 cursor-pointer shadow-sm mt-3 h-[22em] rounded-md w-52 relative"
   >
-    <img
-      src="https://ralndywgenzrlxupkiap.supabase.co/storage/v1/object/sign/imageurl/i7_13700k.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXVybC9pN18xMzcwMGsuanBnIiwidHJhbnNmb3JtYXRpb25zIjoiIiwiaWF0IjoxNjcwNDcwODM1LCJleHAiOjE5ODU4MzA4MzV9.khHMMa34s_fvpsI5Bd5zV8ZJcxxzuJMJ5M-jNy-Xmds"
-      alt="thumbnail"
-    />
+    <img :src="product.imageUrl" alt="thumbnail" />
     <div class="content p-5 mt-3">
-      <p class="text-black/50 text-[12px]">Tech</p>
+      <p class="text-black/50 text-[12px]">{{ product.category }}</p>
       <p id="product_name" class="text-sm font-semibold hover:text-[#088a08]">
-        i5 12400f
+        {{ product.product_name }}
       </p>
       <div class="flex items-center gap-1 mt-2">
         <img src="../assets/star.svg" class="h-4" alt="star" />
@@ -17,7 +16,9 @@
         <p id="rating" class="text-black/50 text-[12px]">4.5 (22)</p>
       </div>
       <div class="mt-4 flex justify-between items-center">
-        <p id="price" class="text-[#001e2b] text-sm font-medium">$32</p>
+        <p id="price" class="text-[#001e2b] text-sm font-medium">
+          $ {{ product.price }}
+        </p>
         <button
           id="add_to_cart_button"
           type="button"
@@ -49,4 +50,8 @@
 
 <script setup>
 import CardOverlay from "~/components/CardOverlay.vue";
+
+defineProps({
+  products: Array,
+});
 </script>
