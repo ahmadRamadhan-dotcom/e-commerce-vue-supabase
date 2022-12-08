@@ -4,6 +4,7 @@
   >
     <Breadcumb />
     <Hero />
+    <ProductCard />
   </main>
 </template>
 
@@ -11,4 +12,5 @@
 // internal imports
 import Breadcumb from "~/components/home/Breadcumb.vue";
 import Hero from "~/components/home/Hero.vue";
+import ProductCard from "~/components/ProductCard.vue";
 </script>
