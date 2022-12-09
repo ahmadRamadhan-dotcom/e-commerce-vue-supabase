@@ -15,7 +15,7 @@
       <img
         :src="product.imageUrl"
         alt="thumbnail"
-        class="h-[12em] w-full object-cover"
+        class="h-[12.8em] w-full object-cover"
       />
     </router-link>
     <div class="content p-5 mt-3">
