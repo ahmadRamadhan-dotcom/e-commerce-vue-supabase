@@ -2,22 +2,49 @@
   <article
     v-for="(product, index) in products"
     :key="index"
-    class="border border-gray-200 group hover:border-green-400 cursor-pointer shadow-sm mt-3 h-[23em] rounded-md w-42 sm:w-52 relative"
+    class="border border-gray-200 group hover:border-green-400 shadow-sm mt-3 min-h-[23.5em] rounded-md w-42 sm:w-52 relative"
   >
-    <img :src="product.imageUrl" alt="thumbnail" />
+    <router-link
+      :to="{
+        name: 'product',
+        params: {
+          id: product.id,
+        },
+      }"
+    >
+      <img
+        :src="product.imageUrl"
+        alt="thumbnail"
+        class="h-[12em] w-full object-cover"
+      />
+    </router-link>
     <div class="content p-5 mt-3">
-      <p class="text-black/50 text-[12px]">{{ product.category }}</p>
-      <p id="product_name" class="text-sm font-semibold hover:text-[#088a08]">
-        {{ product.product_name }}
-      </p>
-      <div class="flex items-center gap-1 mt-2">
-        <img src="../assets/star.svg" class="h-4" alt="star" />
+      <div class="">
+        <p class="text-black/50 text-[12px]">{{ product.category }}</p>
+        <router-link
+          :to="{
+            name: 'product',
+            params: {
+              id: product.id,
+            },
+          }"
+          id="product_name"
+          class="text-sm font-semibold hover:text-[#088a08]"
+        >
+          {{ product.product_name }}
+        </router-link>
+        <div class="flex items-center gap-1 mt-2">
+          <img src="../assets/star.svg" class="h-4" alt="star" />
 
-        <p id="rating" class="text-black/50 text-[12px]">4.5 (22)</p>
+          <p id="rating" class="text-black/50 text-[12px]">4.5 (22)</p>
+        </div>
       </div>
-      <div class="mt-4 flex justify-between items-center">
+      <div
+        class="mt-4 w-10/12 absolute bottom-3 flex justify-between items-center"
+      >
         <p id="price" class="text-[#001e2b] text-sm font-medium">
           ${{ product.price }}
+          {{ id }}
         </p>
         <button
           id="add_to_cart_button"
@@ -44,12 +71,22 @@
         </button>
       </div>
     </div>
-    <CardOverlay />
+    <CardOverlay @click="getProductId(product.id)" :product="product" />
   </article>
 </template>
 
 <script setup>
 import CardOverlay from "~/components/CardOverlay.vue";
+
+import { useProductsStore } from "~/store/useProductsStore";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
+
+const productt = useProductsStore();
+
+const { id, singleProduct } = storeToRefs(productt);
+
+const { getProductId } = productt;
 
 defineProps({
   products: Array,

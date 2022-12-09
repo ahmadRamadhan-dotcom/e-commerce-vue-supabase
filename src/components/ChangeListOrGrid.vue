@@ -1,5 +1,5 @@
 <template>
-  <div class="flex item(s-center gap-2">
+  <div class="flex items-center gap-2">
     <router-link
       v-for="(data, index) in changeListData"
       :key="index"

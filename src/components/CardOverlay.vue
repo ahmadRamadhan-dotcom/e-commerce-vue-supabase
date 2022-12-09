@@ -1,10 +1,36 @@
+<script setup>
+import { useModalStore } from "~/store/useModalStore";
+import { useProductsStore } from "~/store/useProductsStore";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
+
+const props = defineProps({
+  product: Object,
+});
+
+console.log(props.product);
+
+const data = useModalStore();
+const prodtuctt = useProductsStore();
+
+const { products } = storeToRefs(prodtuctt);
+
+const { modal } = storeToRefs(data);
+
+const { getProduct } = prodtuctt;
+const showModal = () => {
+  modal.value = !modal.value;
+};
+</script>
+
 <template>
   <div
-    class="absolute hidden group-hover:flex items-center gap-2 left-[45%] top-[45%] -translate-x-[50%] z-[30] -translate-y-[50%]"
+    class="absolute hidden group-hover:flex items-center gap-2 left-[45%] top-[45%] -translate-x-[50%] z-[30] -translate-y-[50%] cursor-pointer"
   >
     <div
       id="container"
       class="bg-white hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex relative justify-center items-center rounded-md"
+      @click="showModal"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,8 +45,18 @@
           d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
         />
       </svg>
-      <div class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md">
-        <p class="text-center text-white text-[12px]">View</p>
+      <div
+        aria-label="quick_view_button"
+        type="button"
+        class="absolute tooltip hidden -top-9 bg-black w-24 py-1 rounded-md"
+      >
+        <p
+          type="button"
+          aria-label="quick_view_button"
+          class="text-center mx-auto text-white text-[12px] select-none"
+        >
+          Quick View
+        </p>
       </div>
     </div>
     <div
@@ -50,6 +86,6 @@
 
 <style scoped>
 #container:hover .tooltip {
-  display: block;
+  display: flex;
 }
 </style>

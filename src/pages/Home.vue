@@ -1,6 +1,6 @@
 <template>
   <main
-    class="mt-8 mx-auto w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px]"
+    class="mt-8 mx-auto w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px] relative"
   >
     <Hero />
     <div class="flex items-center justify-between">
@@ -22,6 +22,7 @@
 import Hero from "~/components/home/Hero.vue";
 import ProductCard from "~/components/ProductCard.vue";
 import ChangeListOrGrid from "~/components/ChangeListOrGrid.vue";
+
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { onMounted, ref } from "vue";
