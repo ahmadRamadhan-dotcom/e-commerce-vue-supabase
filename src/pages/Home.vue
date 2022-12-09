@@ -2,6 +2,7 @@
   <main
     class="mt-8 mx-auto w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px] relative"
   >
+    <BreadCumb />
     <Hero />
     <div class="flex items-center justify-between">
       <p class="mt-3 text-black/50">
@@ -22,6 +23,7 @@
 import Hero from "~/components/home/Hero.vue";
 import ProductCard from "~/components/ProductCard.vue";
 import ChangeListOrGrid from "~/components/ChangeListOrGrid.vue";
+import BreadCumb from "~/components/home/Breadcumb.vue";
 
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";

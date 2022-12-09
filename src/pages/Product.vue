@@ -1,25 +1,59 @@
 <template>
   <main
+    v-for="(data, index) in singleProduct"
+    :key="index"
     class="mt-5 w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px] mx-auto"
   >
-    <div class="grid xl:grid-cols-2 xl:gap-12">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10 xl:grid-cols-2 xl:gap-12"
+    >
       <div class="">
-        <!-- <img
-          src="https://ralndywgenzrlxupkiap.supabase.co/storage/v1/object/sign/imageurl/iphone_11.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXVybC9pcGhvbmVfMTEud2VicCIsInRyYW5zZm9ybWF0aW9ucyI6IiIsImlhdCI6MTY3MDU4MDU2NiwiZXhwIjoxOTg1OTQwNTY2fQ.orLa4yBm5F5Md_pdECjC6a5fUDbjOwir8XMfmShr0VE"
-          alt=""
-          class="border rounded-md shadow-sm cursor-zoom-in trasition duration-300"
-        /> -->
         <figure
-          class="goOnZoom bg-[url('https://images.unsplash.com/photo-1549915009-4ad67f8ccf6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')]"
+          :class="`bg-[url('${data.imageUrl}')]`"
+          class="border border-gray-300 goOnZoom"
           @mousemove="zoom"
           @touchmove="zoom"
         >
           <img
-            src="https://images.unsplash.com/photo-1549915009-4ad67f8ccf6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt="large_image"
+            class="shadow-sm rounded-md"
+            :src="data.imageUrl"
           />
         </figure>
       </div>
-      <div class="border-8"></div>
+      <div class="">
+        <p class="text-green-500 font-semibold">Tech</p>
+        <p class="text-2xl font-bold mt-2">Iphone 14</p>
+        <div class="flex items-center gap-1 mt-3">
+          <img src="../assets/star.svg" alt="star" />
+          <p class="text-black/50 text-sm">
+            4.5 <span class="text-green-500 font-semibold">(50 reviews)</span>
+          </p>
+        </div>
+        <p id="price" class="mt-3 text-2xl font-bold">$40</p>
+        <div class="flex items-center mt-8">
+          <button
+            class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
+            aria-label="minus_button"
+            type="button"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            class="border border-gray-300 w-10 pl-3 py-[2px] text-black/70 text-sm"
+            value="1"
+          />
+          <button
+            class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
+            aria-label="add_button"
+            type="button"
+          >
+            +
+          </button>
+        </div>
+        <AddToCart class="mt-10" />
+      </div>
     </div>
   </main>
 </template>
@@ -29,11 +63,13 @@ import { zoom } from "~/utils/helpers";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useRoute } from "vue-router";
-import { onMounted } from "vue";
+import { onMounted, watchEffect, ref } from "vue";
+
+import AddToCart from "~/components/AddToCart.vue";
 
 const Main = useProductsStore();
 
-const { singleProduct } = storeToRefs(Main);
+const { singleProduct, ImageUrl } = storeToRefs(Main);
 
 const { getProduct } = Main;
 
@@ -47,7 +83,6 @@ onMounted(() => {
 <style scoped>
 figure.goOnZoom {
   position: relative;
-  width: 500px;
   overflow: hidden;
   cursor: zoom-in;
 }

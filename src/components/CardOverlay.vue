@@ -8,8 +8,6 @@ const props = defineProps({
   product: Object,
 });
 
-console.log(props.product);
-
 const data = useModalStore();
 const prodtuctt = useProductsStore();
 

@@ -1,5 +1,4 @@
 const zoom = (e) => {
-  console.log(e);
   let zoomer = e.currentTarget;
   let offsetX = e.offsetX;
   let offsetY = e.offsetY;

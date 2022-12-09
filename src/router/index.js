@@ -24,6 +24,10 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
   linkExactActiveClass: "exact-active",
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 };
+  },
 });
 
 export default router;

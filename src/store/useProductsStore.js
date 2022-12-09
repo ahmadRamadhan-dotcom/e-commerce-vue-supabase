@@ -4,7 +4,8 @@ import { supabase } from "~/supabase";
 export const useProductsStore = defineStore("main", {
   state: () => ({
     products: [],
-    singleProduct: [],
+    singleProduct: {},
+    ImageUrl: String,
     error: [],
     status: [],
     productLength: null,
@@ -35,6 +36,7 @@ export const useProductsStore = defineStore("main", {
 
         if (data) {
           this.singleProduct = data;
+          this.ImageUrl = data[0].imageUrl;
         }
       } catch (error) {
         this.error = error;
