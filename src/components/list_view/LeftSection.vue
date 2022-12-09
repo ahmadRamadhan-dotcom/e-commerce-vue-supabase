@@ -1,5 +1,5 @@
 <template>
-  <section class="mt-8">
+  <section class="hidden lg:block mt-8">
     <div>
       <p class="font-semibold">Search Product</p>
       <input
