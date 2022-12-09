@@ -2,7 +2,7 @@
   <div
     v-for="(product, index) in products"
     :key="index"
-    class="border border-gray-200 group hover:border-green-400 cursor-pointer shadow-sm mt-3 h-[22em] rounded-md w-42 sm:w-52 relative"
+    class="border border-gray-200 group hover:border-green-400 cursor-pointer shadow-sm mt-3 h-[23em] rounded-md w-42 sm:w-52 relative"
   >
     <img :src="product.imageUrl" alt="thumbnail" />
     <div class="content p-5 mt-3">

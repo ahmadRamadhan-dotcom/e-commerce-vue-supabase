@@ -7,11 +7,18 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/list",
+    name: "List",
+    component: () => import("~/pages/ListView.vue"),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  linkActiveClass: "active",
+  linkExactActiveClass: "exact-active",
 });
 
 export default router;

@@ -1,5 +1,7 @@
 <template>
-  <div class="flex items-center gap-2">
+  <div
+    class="flex items-center gap-2 mt-8 mx-auto w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px]"
+  >
     <div
       v-for="(data, index) in breadcumbsData"
       :key="index"
