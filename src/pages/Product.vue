@@ -9,7 +9,6 @@
     >
       <div class="">
         <figure
-          :class="`bg-[url('${data.imageUrl}')]`"
           class="border border-gray-300 goOnZoom"
           @mousemove="zoom"
           @touchmove="zoom"

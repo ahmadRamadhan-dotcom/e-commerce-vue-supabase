@@ -2,7 +2,6 @@
 import { useModalStore } from "~/store/useModalStore";
 import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
 
 const props = defineProps({
   product: Object,
@@ -23,11 +22,11 @@ const showModal = () => {
 
 <template>
   <div
-    class="absolute hidden group-hover:flex items-center gap-2 left-[45%] top-[45%] -translate-x-[50%] z-[30] -translate-y-[50%] cursor-pointer"
+    class="absolute hidden group-hover:flex items-center gap-2 left-[45%] top-[45%] -translate-x-[50%] z-[30] -translate-y-[50%] cursor-pointer shadow-md"
   >
     <div
       id="container"
-      class="bg-white hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex relative justify-center items-center rounded-md"
+      class="bg-white border hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex relative justify-center items-center rounded-md"
       @click="showModal"
     >
       <svg
