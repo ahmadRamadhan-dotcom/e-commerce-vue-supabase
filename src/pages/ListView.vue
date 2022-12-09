@@ -69,7 +69,7 @@ onMounted(() => {
             </button>
           </div>
         </div>
-        <ProductCard />
+        <ProductCard :products="products" />
       </div>
     </div>
   </div>
