@@ -2,6 +2,7 @@
 import Hero from "~/components/home/Hero.vue";
 import ChangeListOrGrid from "~/components/ChangeListOrGrid.vue";
 import LeftSection from "~/components/list_view/LeftSection.vue";
+import ProductCard from "~/components/list_view/ProductCard.vue";
 
 import { useProductsStore } from "~/store/useProductsStore";
 import { useHeaderStore } from "~/store/useHeaderStore";
@@ -31,7 +32,7 @@ onMounted(() => {
   <div
     class="mx-auto h-[500vh] relative w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px]"
   >
-    <div class="xl:grid xl:grid-cols-4 xl:gap-5">
+    <div class="lg:grid lg:grid-cols-4 lg:gap-7">
       <LeftSection />
       <div class="col-span-3">
         <Hero />
@@ -68,6 +69,7 @@ onMounted(() => {
             </button>
           </div>
         </div>
+        <ProductCard />
       </div>
     </div>
   </div>
