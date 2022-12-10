@@ -10,7 +10,7 @@ defineProps({
   <article
     v-for="(product, index) in products"
     :key="index"
-    class="border border-gray-300 rounded-md group hover:border-green-400 cursor-pointer shadow-sm mt-9 h-[29em] md:h-[15.5em] p-5 md:flex md:gap-14"
+    class="border border-gray-300 rounded-md group hover:border-green-400 cursor-pointer shadow-sm mt-9 min-h-[29em] md:h-[15.5em] p-5 md:flex md:gap-14"
   >
     <img :src="product.imageUrl" alt="thumbnail" class="mx-auto md:mx-0" />
     <div>

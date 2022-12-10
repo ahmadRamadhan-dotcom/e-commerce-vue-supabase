@@ -51,6 +51,7 @@
           type="button"
           aria-label="cart_button"
           class="px-2.5 rounded-md text-[12px] flex items-center gap-1 py-1 text-white bg-[#0aad0a] hover:bg-[#099309] active:bg-[#088a08] active:border active:border-[#088208]"
+          @click="showcart"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,13 +80,18 @@
 import CardOverlay from "~/components/CardOverlay.vue";
 
 import { useProductsStore } from "~/store/useProductsStore";
+import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
 const productt = useProductsStore();
+const cart = useCartStore();
 
 const { id, singleProduct } = storeToRefs(productt);
 
+const { showCart } = storeToRefs(cart);
+
+const { showcart } = cart;
 const { getProductId } = productt;
 
 defineProps({

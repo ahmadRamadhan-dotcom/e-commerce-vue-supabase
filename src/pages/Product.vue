@@ -21,15 +21,15 @@
         </figure>
       </div>
       <div class="">
-        <p class="text-green-500 font-semibold">Tech</p>
-        <p class="text-2xl font-bold mt-2">Iphone 14</p>
+        <p class="text-green-500 font-semibold">{{ data.category }}</p>
+        <p class="text-2xl font-bold mt-2">{{ data.product_name }}</p>
         <div class="flex items-center gap-1 mt-3">
           <img src="../assets/star.svg" alt="star" />
           <p class="text-black/50 text-sm">
             4.5 <span class="text-green-500 font-semibold">(50 reviews)</span>
           </p>
         </div>
-        <p id="price" class="mt-3 text-2xl font-bold">$40</p>
+        <p id="price" class="mt-3 text-2xl font-bold">${{ data.price }}</p>
         <div class="flex items-center mt-8">
           <button
             class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
