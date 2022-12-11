@@ -3,6 +3,7 @@
     aria-label="add_to_cart_button"
     type="button"
     class="mt-2 px-3 py-1.5 flex gap-2 items-center text-white rounded-md bg-[#0aad0a] hover:bg-[#088a08]"
+    @click="showcart"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,3 +24,14 @@
     Add to cart
   </button>
 </template>
+
+<script setup>
+import { useCartStore } from "~/store/useCartStore";
+import { storeToRefs } from "pinia";
+
+const cart = useCartStore();
+
+const { showCart } = storeToRefs(cart);
+
+const { showcart } = cart;
+</script>

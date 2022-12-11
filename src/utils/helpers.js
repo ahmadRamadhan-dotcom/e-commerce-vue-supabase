@@ -9,4 +9,12 @@ const zoom = (e) => {
   zoomer.style.backgroundPosition = x + "% " + y + "%";
 };
 
-export { zoom };
+const capitalizeFirstLetter = (s) => {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
+const changeCommaToAnd = (s) => {
+  return s.replace(/, /g, "&");
+};
+
+export { zoom, capitalizeFirstLetter, changeCommaToAnd };

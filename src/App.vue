@@ -6,21 +6,28 @@ import Basket from "~/components/Basket.vue";
 
 import { useModalStore } from "~/store/useModalStore";
 import { useCartStore } from "~/store/useCartStore";
+import { useProductsStore } from "./store/useProductsStore";
 import { storeToRefs } from "pinia";
 import { watchEffect } from "vue";
 
 const data = useModalStore();
 const cart = useCartStore();
+const product = useProductsStore();
 
 const { modal } = storeToRefs(data);
 const { showCart } = storeToRefs(cart);
+const { id } = storeToRefs(product);
 
-watchEffect(() => {
+const overflowYHidden = () => {
   if (modal.value === true || showCart.value === true) {
     document.body.style.overflowY = "hidden";
   } else {
     document.body.style.overflowY = "";
   }
+};
+
+watchEffect(() => {
+  overflowYHidden();
 });
 </script>
 
@@ -28,7 +35,7 @@ watchEffect(() => {
   <div class="relative">
     <Basket />
     <MobileNav />
-    <ModalPreview />
+    <ModalPreview :id="id" />
     <Header />
     <router-view></router-view>
   </div>

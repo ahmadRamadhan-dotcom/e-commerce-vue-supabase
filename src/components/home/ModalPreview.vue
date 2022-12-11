@@ -2,14 +2,23 @@
 import ProductCard from "~/components/list_view/ProductCard.vue";
 
 import { useModalStore } from "~/store/useModalStore";
+import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 
-const test = ref(false);
+const props = defineProps({
+  id: Number,
+});
 
+const product = useProductsStore();
 const data = useModalStore();
 
+const { products } = storeToRefs(product);
 const { modal } = storeToRefs(data);
+
+const filter = computed(() => {
+  return products.value.filter((p) => p.id === props.id);
+});
 </script>
 
 <template>
@@ -45,7 +54,7 @@ const { modal } = storeToRefs(data);
         <div
           class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 min-h-[20em] w-[900px]"
         >
-          <ProductCard />
+          <ProductCard :products="filter" />
         </div>
       </div>
     </div>

@@ -8,19 +8,24 @@ import { useProductsStore } from "~/store/useProductsStore";
 import { useHeaderStore } from "~/store/useHeaderStore";
 import { storeToRefs } from "pinia";
 import { watchEffect, onMounted } from "vue";
+
 const main = useProductsStore();
 const header = useHeaderStore();
 
 const { products, productLength } = storeToRefs(main);
-const { getProducts } = main;
+const { getProducts, filteredProduct } = main;
 const { openHeader } = storeToRefs(header);
 
-watchEffect(() => {
+const overflowYHidden = () => {
   if (openHeader.value === true) {
     document.body.style.overflowY = "hidden";
   } else {
     document.body.style.overflowY = "";
   }
+};
+
+watchEffect(() => {
+  overflowYHidden();
 });
 
 onMounted(() => {

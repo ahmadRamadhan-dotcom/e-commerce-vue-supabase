@@ -21,7 +21,7 @@ const hideCart = () => {
       class="fixed right-0 bg-white h-screen z-[30] w-full sm:w-[540px] transition duration-700"
     >
       <div class="flex justify-between p-3 border-b border-gray-300 pb-5">
-        <div>
+        <div class="select-none">
           <span class="font-semibold text-[22px]">Shop Cart</span>
           <p class="text-black/50 text-[12px] font-medium">
             Location in 900080
@@ -43,7 +43,9 @@ const hideCart = () => {
         </button>
       </div>
       <div class="p-3">
-        <div class="bg-[#f8d6d6] w-full h-[2.4em] rounded-md p-[9px]">
+        <div
+          class="bg-[#f8d6d6] w-full h-[2.4em] rounded-md p-[9px] select-none"
+        >
           <p class="text-sm font-medium text-[#831d1d]">
             You’ve got FREE delivery. Start
             <router-link to="/" class="text-[#691717] font-bold">

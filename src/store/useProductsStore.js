@@ -5,6 +5,7 @@ export const useProductsStore = defineStore("main", {
   state: () => ({
     products: [],
     singleProduct: {},
+    favorited: [],
     ImageUrl: String,
     error: [],
     status: [],
@@ -41,6 +42,25 @@ export const useProductsStore = defineStore("main", {
       } catch (error) {
         this.error = error;
       }
+    },
+    async updateFavorited(id) {
+      try {
+        const { data, error } = await supabase
+          .from("product")
+          .upsert({ favorited: true, cart_quantity: 1 })
+          .eq("id", id)
+          .select();
+
+        if (data) {
+          this.favorited = data;
+        }
+      } catch (error) {
+        this.error = error;
+      }
+    },
+    filteredProduct(id) {
+      const data = this.products.filter((product) => product.id === id);
+      this.singleProduct = data;
     },
     getProductId(id) {
       this.id = id;

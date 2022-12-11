@@ -1,8 +1,15 @@
+<script setup>
+import { ref, computed } from "vue";
+
+const keyword = ref("");
+</script>
+
 <template>
   <section class="hidden lg:block mt-8">
     <div>
-      <p class="font-semibold">Search Product</p>
+      <p class="font-semibold">Search Product {{ keyword }}</p>
       <input
+        v-model="keyword"
         type="text"
         placeholder="Search product"
         class="border border-gray-200 text-[#5c6c75] focus:border-green-300 shadow-sm pl-5 w-full rounded-md py-1.5 mt-3 focus:ring-2 focus:ring-green-300 focus:outline-none focus:shadow-lg"
