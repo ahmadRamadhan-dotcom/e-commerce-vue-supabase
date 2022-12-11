@@ -10,6 +10,7 @@
       <div class="">
         <figure
           class="border border-gray-300 goOnZoom"
+          ref="figure"
           @mousemove="zoom"
           @touchmove="zoom"
         >
@@ -67,6 +68,10 @@ import { onMounted, watchEffect, ref } from "vue";
 import AddToCart from "~/components/AddToCart.vue";
 
 const Main = useProductsStore();
+
+const figure = ref(null);
+
+console.log(figure);
 
 const { singleProduct, ImageUrl } = storeToRefs(Main);
 

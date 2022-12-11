@@ -7,6 +7,7 @@ export const useProductsStore = defineStore("main", {
     singleProduct: {},
     favorited: [],
     ImageUrl: String,
+    cart: [],
     error: [],
     status: [],
     productLength: null,
@@ -58,6 +59,7 @@ export const useProductsStore = defineStore("main", {
         this.error = error;
       }
     },
+    addToCart(id) {},
     filteredProduct(id) {
       const data = this.products.filter((product) => product.id === id);
       this.singleProduct = data;

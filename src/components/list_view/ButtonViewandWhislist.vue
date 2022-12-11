@@ -1,8 +1,18 @@
+<script setup>
+import { useModalStore } from "~/store/useModalStore";
+import { storeToRefs } from "pinia";
+
+const data = useModalStore();
+
+const { modal } = storeToRefs(data);
+</script>
+
 <template>
   <div class="flex items-center gap-1 mt-4">
     <div
       id="container"
-      class="bg-white hover:bg-gray-300 hover:text-black/70 text-black/50 w-8 h-7 flex relative justify-center items-center rounded-md border border-gray-300"
+      :class="modal ? 'hidden' : 'flex'"
+      class="bg-white hover:bg-gray-300 hover:text-black/70 text-black/50 w-8 h-7 relative justify-center items-center rounded-md border border-gray-300"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -83,7 +83,7 @@ import CardOverlay from "~/components/CardOverlay.vue";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { capitalizeFirstLetter, changeCommaToAnd } from "~/utils/helpers";
 
 const productt = useProductsStore();
