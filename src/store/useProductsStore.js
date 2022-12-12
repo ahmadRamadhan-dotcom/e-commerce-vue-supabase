@@ -12,6 +12,7 @@ export const useProductsStore = defineStore("main", {
     status: [],
     productLength: null,
     id: 0,
+    test: null,
   }),
   getters: {
     countCartItems() {
@@ -68,13 +69,11 @@ export const useProductsStore = defineStore("main", {
       }
     },
     addToCart(item) {
-      let index = this.cartItems.findIndex((product) => product.id == item.id);
-      if (index !== -1) {
-        this.products[index].quantity += 1;
-        this.singleProduct[index].quantity += 1;
+      const index = this.cartItems.find((i) => i.id === item.id);
+      if (index) {
+        index.quantity++;
       } else {
-        item.quantity = 1;
-        this.cartItems.push(item);
+        this.cartItems.push({ ...item, quantity: 1 });
       }
     },
     incrementQuantity(item) {

@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 
 const product = useProductsStore();
 
-const { cartItems } = storeToRefs(product);
+const { cartItems, test } = storeToRefs(product);
 
 const { incrementQuantity, decrementQuantity, removeFromCart } = product;
 
@@ -20,7 +20,12 @@ const props = defineProps({
     class="p-5 flex items-center gap-3"
   >
     <div class="flex gap-3 w-1/2">
-      <img :src="data.imageUrl" alt="thumbnail" id="thumbnail" class="h-20" />
+      <img
+        :src="data.imageUrl"
+        alt="thumbnail"
+        id="thumbnail"
+        class="h-20 select-none"
+      />
       <div>
         <router-link
           :to="{
@@ -87,14 +92,7 @@ const props = defineProps({
         </button>
       </div>
       <div class="w-full grid place-content-end">
-        <p class="font-bold text-black/70">
-          ${{
-            cartItems.reduce(
-              (acc, item) => (acc += item.price * item.quantity),
-              0
-            )
-          }}
-        </p>
+        <p class="font-bold text-black/70">${{ data.price * data.quantity }}</p>
       </div>
     </div>
   </div>
