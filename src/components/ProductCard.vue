@@ -52,7 +52,10 @@
           type="button"
           aria-label="cart_button"
           class="px-2.5 rounded-md text-[12px] flex items-center gap-1 py-1 text-white bg-[#0aad0a] hover:bg-[#099309] active:bg-[#088a08] active:border active:border-[#088208]"
-          @click="showcart"
+          @click="
+            showcart();
+            addToCart(product);
+          "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -90,12 +93,12 @@ const productt = useProductsStore();
 
 const cart = useCartStore();
 
-const { products } = storeToRefs(productt);
+const { products, cartItems } = storeToRefs(productt);
 
 const { showCart } = storeToRefs(cart);
 
 const { showcart } = cart;
-const { getProductId } = productt;
+const { getProductId, addToCart } = productt;
 
 defineProps({
   products: Array,

@@ -7,12 +7,20 @@ export const useProductsStore = defineStore("main", {
     singleProduct: {},
     favorited: [],
     ImageUrl: String,
-    cart: [],
+    cartItems: [],
     error: [],
     status: [],
     productLength: null,
     id: 0,
   }),
+  getters: {
+    countCartItems() {
+      return this.cartItems.length;
+    },
+    getCartItems() {
+      return this.cartItems;
+    },
+  },
   actions: {
     async getProducts() {
       try {
@@ -59,7 +67,37 @@ export const useProductsStore = defineStore("main", {
         this.error = error;
       }
     },
-    addToCart(id) {},
+    addToCart(item) {
+      let index = this.cartItems.findIndex((product) => product.id == item.id);
+      if (index !== -1) {
+        this.products[index].quantity += 1;
+      } else {
+        item.quantity = 1;
+        this.cartItems.push(item);
+      }
+    },
+    incrementQuantity(item) {
+      let index = this.cartItems.findIndex((product) => product.id === item.id);
+      if (index !== -1) {
+        this.cartItems[index].quantity += 1;
+      }
+    },
+    decrementQuantity(item) {
+      let index = this.cartItems.findIndex((product) => product.id === item.id);
+      if (index !== -1) {
+        this.cartItems[index].quantity -= 1;
+        if (this.cartItems[index].quantity === 0) {
+          this.cartItems = this.cartItems.filter(
+            (product) => product.id !== item.id
+          );
+        }
+      }
+    },
+    removeFromCart(item) {
+      this.cartItems = this.cartItems.filter(
+        (product) => product.id !== item.id
+      );
+    },
     filteredProduct(id) {
       const data = this.products.filter((product) => product.id === id);
       this.singleProduct = data;

@@ -1,10 +1,15 @@
 <script setup>
 import { useCartStore } from "~/store/useCartStore";
+import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
 
+import BasketCard from "~/components/BasketCard.vue";
+
 const cart = useCartStore();
+const product = useProductsStore();
 
 const { showCart } = storeToRefs(cart);
+const { cartItems } = storeToRefs(product);
 
 const hideCart = () => {
   showCart.value = !showCart.value;
@@ -54,6 +59,7 @@ const hideCart = () => {
           </p>
         </div>
       </div>
+      <BasketCard />
     </div>
   </div>
 </template>
