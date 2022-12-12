@@ -14,14 +14,6 @@ export const useProductsStore = defineStore("main", {
     id: 0,
     test: null,
   }),
-  getters: {
-    countCartItems() {
-      return this.cartItems.length;
-    },
-    getCartItems() {
-      return this.cartItems;
-    },
-  },
   actions: {
     async getProducts() {
       try {

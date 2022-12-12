@@ -4,7 +4,6 @@
     :key="index"
     class="mt-5 w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px] mx-auto"
   >
-    {{ singleProduct }}
     <div
       class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10 xl:grid-cols-2 xl:gap-12"
     >
@@ -53,7 +52,7 @@
             +
           </button>
         </div>
-        <AddToCart class="mt-10" />
+        <AddToCart :products="data" class="mt-10" />
       </div>
     </div>
   </main>
