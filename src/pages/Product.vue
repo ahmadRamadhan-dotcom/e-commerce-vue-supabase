@@ -31,27 +31,7 @@
           </p>
         </div>
         <p id="price" class="mt-3 text-2xl font-bold">${{ data.price }}</p>
-        <div class="flex items-center mt-8">
-          <button
-            class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
-            aria-label="minus_button"
-            type="button"
-          >
-            -
-          </button>
-          <input
-            type="number"
-            class="border border-gray-300 w-10 pl-3 py-[2px] text-black/70 text-sm"
-            value="1"
-          />
-          <button
-            class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
-            aria-label="add_button"
-            type="button"
-          >
-            +
-          </button>
-        </div>
+
         <AddToCart :products="data" class="mt-10" />
       </div>
     </div>
@@ -63,7 +43,7 @@ import { zoom } from "~/utils/helpers";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useRoute } from "vue-router";
-import { onMounted, watchEffect, ref } from "vue";
+import { onMounted, watchEffect, ref, computed } from "vue";
 
 import AddToCart from "~/components/AddToCart.vue";
 

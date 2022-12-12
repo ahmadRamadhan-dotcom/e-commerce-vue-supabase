@@ -4,6 +4,7 @@ import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
 
 import BasketCard from "~/components/BasketCard.vue";
+import CheckoutNow from "~/components/CheckoutNow.vue";
 
 const cart = useCartStore();
 const product = useProductsStore();
@@ -47,19 +48,15 @@ const hideCart = () => {
           </svg>
         </button>
       </div>
-      <div class="p-3">
-        <div
-          class="bg-[#f8d6d6] w-full h-[2.4em] rounded-md p-[9px] select-none"
-        >
-          <p class="text-sm font-medium text-[#831d1d]">
-            You’ve got FREE delivery. Start
-            <router-link to="/" class="text-[#691717] font-bold">
-              checkout now!</router-link
-            >
-          </p>
-        </div>
+      <CheckoutNow class="p-3" />
+      <div class="h-[70vh] overflow-auto">
+        <BasketCard :items="cartItems" />
       </div>
-      <BasketCard :items="cartItems" />
+      <div class="p-3" @click="hideCart">
+        <button class="text-white w-[100%] bg-[#0aad0a] text-lg rounded-md">
+          <router-link to="/cart"> Look Cart </router-link>
+        </button>
+      </div>
     </div>
   </div>
 </template>

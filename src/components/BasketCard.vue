@@ -17,7 +17,7 @@ const props = defineProps({
   <div
     v-for="(data, index) in items"
     :key="index"
-    class="p-5 flex items-center gap-3"
+    class="p-5 mt-2 flex items-center gap-3 border-y border-gray-300"
   >
     <div class="flex gap-3 w-1/2">
       <img
@@ -78,7 +78,7 @@ const props = defineProps({
         </button>
         <p
           type="number"
-          class="border border-gray-300 w-14 pl-3 py-[2px] text-black/70 text-sm"
+          class="border border-gray-300 text-center w-14 pl-3 py-[2px] text-black/70 text-sm"
         >
           {{ data.quantity }}
         </p>

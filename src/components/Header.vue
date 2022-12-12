@@ -6,7 +6,7 @@
       <router-link to="/">
         <img src="../assets/tokopedia.svg" alt="header_logo" />
       </router-link>
-      <div class="flex items-center gap-2 justify-end">
+      <div class="flex items-center gap-4 justify-end">
         <Whislist />
         <Cart />
       </div>
