@@ -4,9 +4,10 @@ import { storeToRefs } from "pinia";
 
 const product = useProductsStore();
 
-const { cartItems, test } = storeToRefs(product);
+const { cartItems, confirmDelete, test, id } = storeToRefs(product);
 
-const { incrementQuantity, decrementQuantity, removeFromCart } = product;
+const { incrementQuantity, decrementQuantity, removeFromCart, getProductId } =
+  product;
 
 const props = defineProps({
   items: Array,
@@ -72,7 +73,10 @@ const props = defineProps({
           class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
           aria-label="minus_button"
           type="button"
-          @click="decrementQuantity(data)"
+          @click="
+            decrementQuantity(data);
+            getProductId(data.id);
+          "
         >
           -
         </button>
@@ -86,7 +90,10 @@ const props = defineProps({
           class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
           aria-label="add_button"
           type="button"
-          @click="incrementQuantity(data)"
+          @click="
+            incrementQuantity(data);
+            getProductId(data.id);
+          "
         >
           +
         </button>

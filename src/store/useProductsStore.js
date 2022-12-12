@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { supabase } from "~/supabase";
 
+import Swal from "sweetalert2";
+
 export const useProductsStore = defineStore("main", {
   state: () => ({
     products: [],
@@ -11,8 +13,9 @@ export const useProductsStore = defineStore("main", {
     error: [],
     status: [],
     productLength: null,
+    confirmDelete: false,
     id: 0,
-    test: null,
+    test: [],
   }),
   actions: {
     async getProducts() {
@@ -66,6 +69,12 @@ export const useProductsStore = defineStore("main", {
         index.quantity++;
       } else {
         this.cartItems.push({ ...item, quantity: 1 });
+        Swal.fire({
+          icon: "success",
+          title: "Your item has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
     incrementQuantity(item) {
@@ -86,9 +95,26 @@ export const useProductsStore = defineStore("main", {
       }
     },
     removeFromCart(item) {
-      this.cartItems = this.cartItems.filter(
-        (product) => product.id !== item.id
-      );
+      const that = this;
+      Swal.fire({
+        title: "Are you sure to delete this product?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          that.confirmDelete = true;
+          if (that.confirmDelete) {
+            this.cartItems = this.cartItems.filter(
+              (product) => product.id !== item.id
+            );
+          }
+          Swal.fire("Deleted!", "Your prduct has been deleted.", "success");
+        }
+      });
     },
     filteredProduct(id) {
       const data = this.products.filter((product) => product.id === id);
