@@ -23,7 +23,7 @@ const hideCart = () => {
     class="h-screen top-0 w-full bg-black/70 z-[20]"
   >
     <div
-      class="fixed right-0 bg-white h-screen z-[30] w-full sm:w-[540px] transition duration-700"
+      class="fixed right-0 bg-white overflow-auto h-screen z-[30] w-full sm:w-[540px] transition duration-700"
     >
       <div class="flex justify-between p-3 border-b border-gray-300 pb-5">
         <div class="select-none">
@@ -59,7 +59,7 @@ const hideCart = () => {
           </p>
         </div>
       </div>
-      <BasketCard />
+      <BasketCard :items="cartItems" />
     </div>
   </div>
 </template>

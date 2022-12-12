@@ -50,7 +50,7 @@ defineProps({
         ${{ product.price }}
       </div>
       <ButtonViewandWhislist />
-      <AddToCart />
+      <AddToCart :products="product" />
     </div>
   </article>
 </template>

@@ -3,7 +3,10 @@
     aria-label="add_to_cart_button"
     type="button"
     class="mt-2 px-3 py-1.5 flex gap-2 items-center text-white rounded-md bg-[#0aad0a] hover:bg-[#088a08]"
-    @click="showcart"
+    @click="
+      showcart();
+      addToCart(products);
+    "
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,11 +30,19 @@
 
 <script setup>
 import { useCartStore } from "~/store/useCartStore";
+import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
 
+const props = defineProps({
+  products: Object,
+});
+
 const cart = useCartStore();
+const product = useProductsStore();
 
 const { showCart } = storeToRefs(cart);
+
+const { addToCart } = product;
 
 const { showcart } = cart;
 </script>

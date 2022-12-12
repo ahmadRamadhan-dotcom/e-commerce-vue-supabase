@@ -1,14 +1,28 @@
+<script setup>
+const props = defineProps({
+  items: Array,
+});
+</script>
+
 <template>
-  <div class="p-5 flex items-center gap-3">
+  <div
+    v-for="(data, index) in items"
+    :key="index"
+    class="p-5 flex items-center gap-3"
+  >
     <div class="flex gap-3 w-1/2">
-      <img
-        src="https://ralndywgenzrlxupkiap.supabase.co/storage/v1/object/sign/imageurl/iphone_11.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXVybC9pcGhvbmVfMTEud2VicCIsInRyYW5zZm9ybWF0aW9ucyI6IiIsImlhdCI6MTY3MDU4MDU2NiwiZXhwIjoxOTg1OTQwNTY2fQ.orLa4yBm5F5Md_pdECjC6a5fUDbjOwir8XMfmShr0VE"
-        alt="thumbnail"
-        id="thumbnail"
-        class="h-20"
-      />
+      <img :src="data.imageUrl" alt="thumbnail" id="thumbnail" class="h-20" />
       <div>
-        <p class="font-bold text-[12px]">Iphone 13</p>
+        <router-link
+          :to="{
+            name: 'product',
+            params: {
+              id: data.id,
+            },
+          }"
+          class="font-bold text-[12px] hover:text-green-500"
+          >{{ data.product_name }}</router-link
+        >
         <p class="text-[12px] text-black/50 mt-2">1kg</p>
         <div class="flex gap-1 mt-2">
           <span class="text-green-500">
@@ -56,7 +70,7 @@
         </button>
       </div>
       <div class="w-full grid place-content-end">
-        <p class="font-bold text-black/70">$5</p>
+        <p class="font-bold text-black/70">${{ data.price }}</p>
       </div>
     </div>
   </div>
