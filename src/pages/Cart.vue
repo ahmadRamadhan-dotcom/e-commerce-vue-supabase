@@ -34,14 +34,15 @@ const itemSubTotal = computed(() => {
       <span class="font-bold text-3xl">Your Cart</span>
       <p class="text-black/70 font-medium mt-3 text-sm">Shopping in 900080</p>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div class="lg:col-span-2 grid">
+        <div class="lg:col-span-2">
           <CheckoutNow class="mb-3" />
           <BasketCard :items="cartItems" />
           <router-link
             to="/"
-            class="px-3 py-2 bg-[#0aad0a] rounded-md text-white font-semibold text-center"
+            type="button"
+            class="w-full bg-[#0aad0a] rounded-md py-2 mt-3 text-white text-center font-semibold"
           >
-            Continue Shooping
+            <span>Continue Shopping</span>
           </router-link>
         </div>
         <div

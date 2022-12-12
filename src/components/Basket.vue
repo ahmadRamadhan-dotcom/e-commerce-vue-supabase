@@ -53,9 +53,13 @@ const hideCart = () => {
         <BasketCard :items="cartItems" />
       </div>
       <div class="p-3" @click="hideCart">
-        <button class="text-white w-[100%] bg-[#0aad0a] text-lg rounded-md">
-          <router-link to="/cart"> Look Cart </router-link>
-        </button>
+        <router-link
+          to="/cart"
+          type="button"
+          class="text-white text-center w-full bg-[#0aad0a] text-lg rounded-md"
+        >
+          <span>View Cart</span>
+        </router-link>
       </div>
     </div>
   </div>
