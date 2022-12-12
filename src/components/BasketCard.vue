@@ -1,4 +1,13 @@
 <script setup>
+import { useProductsStore } from "~/store/useProductsStore";
+import { storeToRefs } from "pinia";
+
+const product = useProductsStore();
+
+const { cartItems } = storeToRefs(product);
+
+const { incrementQuantity, decrementQuantity, removeFromCart } = product;
+
 const props = defineProps({
   items: Array,
 });
@@ -24,7 +33,12 @@ const props = defineProps({
           >{{ data.product_name }}</router-link
         >
         <p class="text-[12px] text-black/50 mt-2">1kg</p>
-        <div class="flex gap-1 mt-2">
+        <button
+          type="button"
+          aria-label="remove_from_cart"
+          class="flex gap-1 mt-2"
+          @click="removeFromCart(data)"
+        >
           <span class="text-green-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +58,7 @@ const props = defineProps({
             </svg>
           </span>
           <p class="text-[12px] text-black/50 font-semibold">Remove</p>
-        </div>
+        </button>
       </div>
     </div>
     <div class="w-1/2 flex gap-3">
@@ -53,24 +67,34 @@ const props = defineProps({
           class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
           aria-label="minus_button"
           type="button"
+          @click="decrementQuantity(data)"
         >
           -
         </button>
-        <input
+        <p
           type="number"
-          class="border border-gray-300 w-10 pl-3 py-[2px] text-black/70 text-sm"
-          value="1"
-        />
+          class="border border-gray-300 w-14 pl-3 py-[2px] text-black/70 text-sm"
+        >
+          {{ data.quantity }}
+        </p>
         <button
           class="border border-gray-300 text-black/50 px-2 hover:bg-gray-300"
           aria-label="add_button"
           type="button"
+          @click="incrementQuantity(data)"
         >
           +
         </button>
       </div>
       <div class="w-full grid place-content-end">
-        <p class="font-bold text-black/70">${{ data.price }}</p>
+        <p class="font-bold text-black/70">
+          ${{
+            cartItems.reduce(
+              (acc, item) => (acc += item.price * item.quantity),
+              0
+            )
+          }}
+        </p>
       </div>
     </div>
   </div>

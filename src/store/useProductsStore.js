@@ -4,7 +4,7 @@ import { supabase } from "~/supabase";
 export const useProductsStore = defineStore("main", {
   state: () => ({
     products: [],
-    singleProduct: {},
+    singleProduct: [],
     favorited: [],
     ImageUrl: String,
     cartItems: [],
@@ -71,6 +71,7 @@ export const useProductsStore = defineStore("main", {
       let index = this.cartItems.findIndex((product) => product.id == item.id);
       if (index !== -1) {
         this.products[index].quantity += 1;
+        this.singleProduct[index].quantity += 1;
       } else {
         item.quantity = 1;
         this.cartItems.push(item);
