@@ -2,7 +2,7 @@
   <article
     v-for="(product, index) in products"
     :key="index"
-    class="border border-gray-200 group hover:border-green-400 shadow-sm mt-3 min-h-[23.5em] rounded-md w-42 sm:w-52 relative"
+    class="border border-gray-200 group hover:border-green-400 shadow-sm mt-3 min-h-[28.5em] rounded-md w-42 sm:w-52 relative"
   >
     <router-link
       :to="{
@@ -31,7 +31,7 @@
             },
           }"
           id="product_name"
-          class="text-sm font-semibold hover:text-[#088a08]"
+          class="text-[13px] h-[8em] font-semibold hover:text-[#088a08]"
         >
           {{ capitalizeFirstLetter(product.product_name) }}
         </router-link>
