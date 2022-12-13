@@ -59,7 +59,7 @@ const hideCart = () => {
       <div class="h-[70vh] overflow-auto">
         <div v-if="noData" class="p-3">
           <p class="text-xl font-semibold">
-            Your cart is still Empty, add something to makes you happy!
+            Your cart is Empty, add something to makes you happy!
           </p>
         </div>
         <BasketCard :items="cartItems" />

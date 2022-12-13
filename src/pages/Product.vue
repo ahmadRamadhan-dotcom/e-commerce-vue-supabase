@@ -43,9 +43,17 @@ import { zoom } from "~/utils/helpers";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useRoute } from "vue-router";
-import { onMounted, watchEffect, ref, computed } from "vue";
+import {
+  onMounted,
+  watchEffect,
+  ref,
+  computed,
+  defineAsyncComponent,
+} from "vue";
 
-import AddToCart from "~/components/AddToCart.vue";
+const AddToCart = defineAsyncComponent(() =>
+  import("~/components/AddToCart.vue")
+);
 
 const Main = useProductsStore();
 

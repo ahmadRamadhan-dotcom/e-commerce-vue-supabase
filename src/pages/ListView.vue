@@ -1,13 +1,19 @@
 <script setup>
-import Hero from "~/components/home/Hero.vue";
-import ChangeListOrGrid from "~/components/ChangeListOrGrid.vue";
-import LeftSection from "~/components/list_view/LeftSection.vue";
-import ProductCard from "~/components/list_view/ProductCard.vue";
-
 import { useProductsStore } from "~/store/useProductsStore";
 import { useHeaderStore } from "~/store/useHeaderStore";
 import { storeToRefs } from "pinia";
-import { watchEffect, onMounted } from "vue";
+import { watchEffect, onMounted, defineAsyncComponent } from "vue";
+
+const Hero = defineAsyncComponent(() => import("~/components/home/Hero.vue"));
+const ChangeListOrGrid = defineAsyncComponent(() =>
+  import("~/components/ChangeListOrGrid.vue")
+);
+const LeftSection = defineAsyncComponent(() =>
+  import("~/components/list_view/LeftSection.vue")
+);
+const ProductCard = defineAsyncComponent(() =>
+  import("~/components/list_view/ProductCard.vue")
+);
 
 const main = useProductsStore();
 const header = useHeaderStore();

@@ -125,6 +125,7 @@ export const useProductsStore = defineStore("main", {
     },
     emptyCart() {
       const that = this;
+      // when the cart is empty
       if (that.cartItems.length == 0) {
         Swal.fire({
           icon: "error",
@@ -134,6 +135,7 @@ export const useProductsStore = defineStore("main", {
           timer: 1500,
         });
       } else {
+        // the cart > 0
         Swal.fire({
           title: "Are you sure to delete all product?",
           text: "You won't be able to revert this!",

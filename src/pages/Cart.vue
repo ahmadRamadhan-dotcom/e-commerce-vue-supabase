@@ -1,11 +1,15 @@
 <script setup>
-import CheckoutNow from "~/components/CheckoutNow.vue";
-import BasketCard from "~/components/BasketCard.vue";
-import Summary from "~/components/Summary.vue";
-
 import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
-import { computed } from "@vue/reactivity";
+import { computed, defineAsyncComponent } from "vue";
+
+const CheckoutNow = defineAsyncComponent(() =>
+  import("~/components/CheckoutNow.vue")
+);
+const BasketCard = defineAsyncComponent(() =>
+  import("~/components/BasketCard.vue")
+);
+const Summary = defineAsyncComponent(() => import("~/components/Summary.vue"));
 
 const product = useProductsStore();
 
@@ -38,7 +42,7 @@ const noData = computed(() => {
       <span class="font-bold text-3xl">Your Cart</span>
       <p class="text-black/70 font-medium mt-3 text-sm">Shopping in 900080</p>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-2 h-[70vh] overflow-auto">
           <CheckoutNow class="mb-3" />
           <div v-if="noData">
             <p class="text-xl font-semibold">
@@ -55,7 +59,7 @@ const noData = computed(() => {
           </router-link>
         </div>
         <div
-          class="border border-gray-300 shadow-sm rounded-md h-[28em] p-5 mt-10"
+          class="border border-gray-300 shadow-sm rounded-md h-[2em] p-5 mt-10"
         >
           <span class="font-medium text-xl">Summary</span>
           <div class="border border-gray-300 rounded-md min-h-[4em] pb-2 mt-6">

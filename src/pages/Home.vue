@@ -20,14 +20,20 @@
 </template>
 
 <script setup>
-import Hero from "~/components/home/Hero.vue";
-import ProductCard from "~/components/ProductCard.vue";
-import ChangeListOrGrid from "~/components/ChangeListOrGrid.vue";
-import BreadCumb from "~/components/home/Breadcumb.vue";
-
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, defineAsyncComponent } from "vue";
+
+const Hero = defineAsyncComponent(() => import("~/components/home/Hero.vue"));
+const ChangeListOrGrid = defineAsyncComponent(() =>
+  import("~/components/ChangeListOrGrid.vue")
+);
+const BreadCumb = defineAsyncComponent(() =>
+  import("~/components/home/Breadcumb.vue")
+);
+const ProductCard = defineAsyncComponent(() =>
+  import("~/components/ProductCard.vue")
+);
 
 const main = useProductsStore();
 
