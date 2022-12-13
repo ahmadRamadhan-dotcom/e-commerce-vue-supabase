@@ -17,4 +17,8 @@ const changeCommaToAnd = (s) => {
   return s.replace(/, /g, "&");
 };
 
-export { zoom, capitalizeFirstLetter, changeCommaToAnd };
+const limitString = (string, length, end = "...") => {
+  return string.length < length ? string : string.substring(0, length) + end;
+};
+
+export { zoom, capitalizeFirstLetter, changeCommaToAnd, limitString };

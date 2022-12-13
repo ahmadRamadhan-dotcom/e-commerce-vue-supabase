@@ -2,7 +2,7 @@
   <article
     v-for="(product, index) in products"
     :key="index"
-    class="border border-gray-200 group hover:border-green-400 shadow-sm mt-3 min-h-[28.5em] rounded-md w-42 sm:w-52 relative"
+    class="border border-gray-200 group hover:border-green-400 shadow-sm mt-3 min-h-[26.5em] sm:h-[26.5em] rounded-md w-42 sm:w-52 relative"
   >
     <router-link
       :to="{
@@ -33,7 +33,7 @@
           id="product_name"
           class="text-[13px] h-[8em] font-semibold hover:text-[#088a08]"
         >
-          {{ capitalizeFirstLetter(product.product_name) }}
+          {{ limitString(capitalizeFirstLetter(product.product_name), 50) }}
         </router-link>
         <div class="flex items-center gap-1 mt-2">
           <img src="../assets/star.svg" class="h-4" alt="star" />
@@ -87,7 +87,11 @@ import { useProductsStore } from "~/store/useProductsStore";
 import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 import { onMounted, computed } from "vue";
-import { capitalizeFirstLetter, changeCommaToAnd } from "~/utils/helpers";
+import {
+  capitalizeFirstLetter,
+  changeCommaToAnd,
+  limitString,
+} from "~/utils/helpers";
 
 const productt = useProductsStore();
 
