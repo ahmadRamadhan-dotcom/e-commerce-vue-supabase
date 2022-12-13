@@ -24,6 +24,10 @@ const itemSubTotal = computed(() => {
     0
   );
 });
+
+const noData = computed(() => {
+  return cartItems.value.length === 0;
+});
 </script>
 
 <template>
@@ -36,6 +40,11 @@ const itemSubTotal = computed(() => {
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="lg:col-span-2">
           <CheckoutNow class="mb-3" />
+          <div v-if="noData">
+            <p class="text-xl font-semibold">
+              Your cart is empty, add something to makes you happy!
+            </p>
+          </div>
           <BasketCard :items="cartItems" />
           <router-link
             to="/"

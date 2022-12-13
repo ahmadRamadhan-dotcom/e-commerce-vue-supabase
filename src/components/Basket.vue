@@ -2,6 +2,7 @@
 import { useCartStore } from "~/store/useCartStore";
 import { useProductsStore } from "~/store/useProductsStore";
 import { storeToRefs } from "pinia";
+import { computed } from "vue";
 
 import BasketCard from "~/components/BasketCard.vue";
 import CheckoutNow from "~/components/CheckoutNow.vue";
@@ -13,6 +14,10 @@ const { showCart } = storeToRefs(cart);
 const { cartItems } = storeToRefs(product);
 
 const { emptyCart } = product;
+
+const noData = computed(() => {
+  return cartItems.value.length == 0;
+});
 
 const hideCart = () => {
   showCart.value = !showCart.value;
@@ -52,6 +57,11 @@ const hideCart = () => {
       </div>
       <CheckoutNow class="p-3" />
       <div class="h-[70vh] overflow-auto">
+        <div v-if="noData" class="p-3">
+          <p class="text-xl font-semibold">
+            Your cart is still Empty, add something to makes you happy!
+          </p>
+        </div>
         <BasketCard :items="cartItems" />
       </div>
       <div class="p-3 flex justify-between">

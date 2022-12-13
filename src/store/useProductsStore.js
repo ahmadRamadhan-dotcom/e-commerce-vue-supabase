@@ -125,23 +125,37 @@ export const useProductsStore = defineStore("main", {
     },
     emptyCart() {
       const that = this;
-      Swal.fire({
-        title: "Are you sure to delete all product?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          that.confirmDelete = true;
-          if (that.confirmDelete) {
-            this.cartItems.splice(0);
+      if (that.cartItems.length == 0) {
+        Swal.fire({
+          icon: "error",
+          title: "Opps ...",
+          text: "You cannot do that, because the cart is still empty",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          title: "Are you sure to delete all product?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            that.confirmDelete = true;
+            if (that.confirmDelete) {
+              Swal.fire(
+                "Deleted!",
+                "Your prducts has been deleted.",
+                "success"
+              );
+              this.cartItems.splice(0);
+            }
           }
-          Swal.fire("Deleted!", "Your prducts has been deleted.", "success");
-        }
-      });
+        });
+      }
     },
     filteredProduct(id) {
       const data = this.products.filter((product) => product.id === id);
