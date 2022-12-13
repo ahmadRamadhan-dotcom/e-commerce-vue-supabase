@@ -32,6 +32,7 @@ import { onMounted, ref } from "vue";
 const main = useProductsStore();
 
 const { products, productLength } = storeToRefs(main);
+
 const { getProducts } = main;
 
 onMounted(() => {

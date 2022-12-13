@@ -66,15 +66,21 @@ export const useProductsStore = defineStore("main", {
     addToCart(item) {
       const index = this.cartItems.find((i) => i.id === item.id);
       if (index) {
-        index.quantity++;
-      } else {
-        this.cartItems.push({ ...item, quantity: 1 });
         Swal.fire({
           icon: "success",
           title: "Your item has been saved",
           showConfirmButton: false,
           timer: 1500,
         });
+        index.quantity++;
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Your item has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.cartItems.push({ ...item, quantity: 1 });
       }
     },
     incrementQuantity(item) {
@@ -113,6 +119,26 @@ export const useProductsStore = defineStore("main", {
             );
           }
           Swal.fire("Deleted!", "Your prduct has been deleted.", "success");
+        }
+      });
+    },
+    emptyCart() {
+      const that = this;
+      Swal.fire({
+        title: "Are you sure to delete all product?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          that.confirmDelete = true;
+          if (that.confirmDelete) {
+            this.cartItems.splice(0);
+          }
+          Swal.fire("Deleted!", "Your prducts has been deleted.", "success");
         }
       });
     },

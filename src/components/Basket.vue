@@ -12,6 +12,8 @@ const product = useProductsStore();
 const { showCart } = storeToRefs(cart);
 const { cartItems } = storeToRefs(product);
 
+const { emptyCart } = product;
+
 const hideCart = () => {
   showCart.value = !showCart.value;
 };
@@ -52,14 +54,23 @@ const hideCart = () => {
       <div class="h-[70vh] overflow-auto">
         <BasketCard :items="cartItems" />
       </div>
-      <div class="p-3" @click="hideCart">
+      <div class="p-3 flex justify-between">
         <router-link
           to="/cart"
           type="button"
-          class="text-white text-center w-full bg-[#0aad0a] text-lg rounded-md"
+          class="text-white text-center px-3 bg-[#0aad0a] text-lg rounded-md"
+          @click="hideCart"
         >
           <span>View Cart</span>
         </router-link>
+        <button
+          type="button"
+          aria-label="delete_all_cart"
+          class="bg-red-500 hover:bg-red-400 text-white font-bold px-3 text-center rounded-md"
+          @click="emptyCart"
+        >
+          Empty Cart
+        </button>
       </div>
     </div>
   </div>
