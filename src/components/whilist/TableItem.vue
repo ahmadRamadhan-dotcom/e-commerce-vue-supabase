@@ -1,10 +1,13 @@
 <script setup>
 import { useWishlistStore } from "~/store/useWishlistStore";
+import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 
 const wishlist = useWishlistStore();
+const cart = useCartStore();
 
 const { removeWishList } = wishlist;
+const { addToCart, showcart } = cart;
 
 const props = defineProps({
   items: Array,
@@ -31,6 +34,10 @@ const props = defineProps({
         type="button"
         aria-label="add_to_cart_button"
         class="bg-[#0aad0a] px-2 py-1 rounded-md hover:bg-green-600 text-center text-white text-[10px]"
+        @click="
+          addToCart(item);
+          showcart();
+        "
       >
         Add to Cart
       </button>
