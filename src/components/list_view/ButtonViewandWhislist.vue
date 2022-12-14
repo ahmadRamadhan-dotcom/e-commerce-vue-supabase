@@ -16,14 +16,23 @@ const { getProductId } = product;
 const { addToWishList } = wishlist;
 
 const { modal } = storeToRefs(data);
+
+const showModal = () => {
+  modal.value = !modal.value;
+};
 </script>
 
 <template>
   <div class="flex items-center gap-1 mt-4">
-    <div
+    <button
+      type="button"
       id="container"
       :class="modal ? 'hidden' : 'flex'"
       class="bg-white hover:bg-gray-300 hover:text-black/70 text-black/50 w-8 h-7 relative justify-center items-center rounded-md border border-gray-300"
+      @click="
+        getProductId(items.id);
+        showModal();
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +50,7 @@ const { modal } = storeToRefs(data);
       <div class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md">
         <p class="text-center text-white text-[12px]">View</p>
       </div>
-    </div>
+    </button>
     <button
       type="button"
       aria-label="add_to_wishlist"
