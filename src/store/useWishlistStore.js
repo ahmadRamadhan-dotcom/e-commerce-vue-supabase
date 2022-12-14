@@ -1,7 +1,5 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { useProductsStore } from "./useProductsStore";
-import { storeToRefs } from "pinia";
 
 import Swal from "sweetalert2";
 

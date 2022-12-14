@@ -1,9 +1,7 @@
 <script setup>
 import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
-import { computed, defineAsyncComponent } from "vue";
-
-import Swal from "sweetalert2";
+import { computed, defineAsyncComponent, ref } from "vue";
 
 const CheckoutNow = defineAsyncComponent(() =>
   import("~/components/CheckoutNow.vue")
@@ -12,6 +10,8 @@ const BasketCard = defineAsyncComponent(() =>
   import("~/components/BasketCard.vue")
 );
 const Summary = defineAsyncComponent(() => import("~/components/Summary.vue"));
+
+const search = ref("");
 
 const cart = useCartStore();
 
@@ -34,6 +34,15 @@ const itemSubTotal = computed(() => {
 const noData = computed(() => {
   return cartItems.value.length === 0;
 });
+
+const filterCart = computed(() => {
+  return cartItems.value.filter((item) => {
+    return (
+      item.product_name.toLowerCase().includes(search.value.toLowerCase()) ||
+      item.category.toLowerCase().includes(search.value.toLowerCase())
+    );
+  });
+});
 </script>
 
 <template>
@@ -43,6 +52,15 @@ const noData = computed(() => {
     <div class="mt-14">
       <span class="font-bold text-3xl">Your Cart</span>
       <p class="text-black/70 font-medium mt-3 text-sm">Shopping in 900080</p>
+      <p class="font-bold text-black/70 mt-2">
+        Search product by product name/category
+      </p>
+      <input
+        type="text"
+        class="mt-3 border border-gray-300 rounded-sm pl-3 focus:ring focus:outline-none"
+        placeholder="Search product"
+        v-model="search"
+      />
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="lg:col-span-2 h-[70vh] overflow-auto">
           <CheckoutNow class="mb-3" />
@@ -51,7 +69,7 @@ const noData = computed(() => {
               Your cart is empty, add something to makes you happy!
             </p>
           </div>
-          <BasketCard :items="cartItems" />
+          <BasketCard :items="filterCart" />
           <router-link
             to="/"
             type="button"

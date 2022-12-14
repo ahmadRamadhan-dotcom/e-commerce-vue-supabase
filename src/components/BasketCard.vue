@@ -2,6 +2,7 @@
 import { useProductsStore } from "~/store/useProductsStore";
 import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
+import { changeCommaToAnd } from "~/utils/helpers";
 
 const product = useProductsStore();
 const cart = useCartStore();
@@ -41,6 +42,9 @@ const props = defineProps({
           >{{ data.product_name }}</router-link
         >
         <p class="text-[12px] text-black/50 mt-2">1kg</p>
+        <p class="text-[12px] text-black/70 mt-2">
+          {{ changeCommaToAnd(data.category) }}
+        </p>
         <button
           type="button"
           aria-label="remove_from_cart"
