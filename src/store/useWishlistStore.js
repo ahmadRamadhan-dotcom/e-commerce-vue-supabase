@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 export const useWishlistStore = defineStore("wish", () => {
   // state
   const wishListItems = ref([]);
-  const confirmDelete = ref(false);
 
   // actions
   const addToWishList = (item) => {
@@ -42,12 +41,10 @@ export const useWishlistStore = defineStore("wish", () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        confirmDelete.value = true;
-        if (confirmDelete) {
-          wishListItems.value = wishListItems.value.filter(
-            (items) => items.id !== item.id
-          );
-        }
+        wishListItems.value = wishListItems.value.filter(
+          (items) => items.id !== item.id
+        );
+
         Swal.fire("Deleted!", "Your prduct has been deleted.", "success");
       }
     });

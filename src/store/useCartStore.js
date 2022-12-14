@@ -13,7 +13,6 @@ export const useCartStore = defineStore("cart", () => {
   // state
   const showCart = ref(false);
   const cartItems = ref([]);
-  const confirmDelete = ref(false);
   const testData = ref(null);
 
   // actions
@@ -63,13 +62,10 @@ export const useCartStore = defineStore("cart", () => {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            confirmDelete.value = true;
-            if (confirmDelete) {
-              cartItems.value = cartItems.value.filter(
-                (product) => product.id !== item.id
-              );
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            }
+            cartItems.value = cartItems.value.filter(
+              (product) => product.id !== item.id
+            );
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
           }
         });
       } else {
@@ -89,12 +85,10 @@ export const useCartStore = defineStore("cart", () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        confirmDelete.value = true;
-        if (confirmDelete) {
-          cartItems.value = cartItems.value.filter(
-            (product) => product.id !== item.id
-          );
-        }
+        cartItems.value = cartItems.value.filter(
+          (product) => product.id !== item.id
+        );
+
         Swal.fire("Deleted!", "Your prduct has been deleted.", "success");
       }
     });
@@ -121,11 +115,8 @@ export const useCartStore = defineStore("cart", () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          confirmDelete.value = true;
-          if (confirmDelete) {
-            Swal.fire("Deleted!", "Your prducts has been deleted.", "success");
-            cartItems.value.splice(0);
-          }
+          Swal.fire("Deleted!", "Your prducts has been deleted.", "success");
+          cartItems.value.splice(0);
         }
       });
     }
