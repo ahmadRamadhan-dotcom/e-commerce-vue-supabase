@@ -1,5 +1,5 @@
 <script setup>
-import { useProductsStore } from "~/store/useProductsStore";
+import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 import { computed, defineAsyncComponent } from "vue";
 
@@ -11,9 +11,9 @@ const BasketCard = defineAsyncComponent(() =>
 );
 const Summary = defineAsyncComponent(() => import("~/components/Summary.vue"));
 
-const product = useProductsStore();
+const cart = useCartStore();
 
-const { cartItems } = storeToRefs(product);
+const { cartItems } = storeToRefs(cart);
 
 const subTotal = computed(() => {
   return cartItems.value.reduce(
@@ -58,9 +58,7 @@ const noData = computed(() => {
             <span>Continue Shopping</span>
           </router-link>
         </div>
-        <div
-          class="border border-gray-300 shadow-sm rounded-md h-[2em] p-5 mt-10"
-        >
+        <div class="border border-gray-300 shadow-sm rounded-md p-5 mt-10">
           <span class="font-medium text-xl">Summary</span>
           <div class="border border-gray-300 rounded-md min-h-[4em] pb-2 mt-6">
             <Summary>

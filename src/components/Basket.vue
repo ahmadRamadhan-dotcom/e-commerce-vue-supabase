@@ -10,11 +10,10 @@ import CheckoutNow from "~/components/CheckoutNow.vue";
 const cart = useCartStore();
 const product = useProductsStore();
 
-const { showCart } = storeToRefs(cart);
-const { cartItems } = storeToRefs(product);
+const { showCart, cartItems } = storeToRefs(cart);
+const {} = storeToRefs(product);
 
-const { emptyCart } = product;
-
+const { emptyCart } = cart;
 const noData = computed(() => {
   return cartItems.value.length == 0;
 });

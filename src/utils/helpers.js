@@ -1,13 +1,9 @@
-const zoom = (e) => {
-  let zoomer = e.currentTarget;
-  let offsetX = e.offsetX;
-  let offsetY = e.offsetY;
-  e.offsetX ? (offsetX = e.offsetX) : (offsetX = e.touches[0].pageX);
-  e.offsetY ? (offsetY = e.offsetY) : (offsetX = e.touches[0].pageX);
-  let x = (offsetX / zoomer.offsetWidth) * 100;
-  let y = (offsetY / zoomer.offsetHeight) * 100;
-  zoomer.style.backgroundPosition = x + "% " + y + "%";
-};
+function onZoom(e) {
+  const x = e.clientX - e.target.offsetLeft;
+  const y = e.clientY - e.target.offsetTop;
+  img.style.transformOrigin = `${x}px ${y}px`;
+  img.style.transform = "scale(2.5)";
+}
 
 const capitalizeFirstLetter = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -21,4 +17,4 @@ const limitString = (string, length, end = "...") => {
   return string.length < length ? string : string.substring(0, length) + end;
 };
 
-export { zoom, capitalizeFirstLetter, changeCommaToAnd, limitString };
+export { onZoom, capitalizeFirstLetter, changeCommaToAnd, limitString };

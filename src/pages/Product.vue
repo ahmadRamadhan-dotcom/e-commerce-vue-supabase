@@ -10,13 +10,15 @@
       <div class="">
         <figure
           class="border border-gray-300 goOnZoom"
-          ref="figure"
-          @mousemove="zoom"
-          @touchmove="zoom"
+          @mousemove="onZoom"
+          @mouseover="onZoom"
+          @mouseleave="offZoom"
         >
           <img
             alt="large_image"
             class="shadow-sm rounded-md"
+            id="image"
+            ref="image"
             :src="data.imageUrl"
           />
         </figure>
@@ -39,7 +41,7 @@
 </template>
 
 <script setup>
-import { zoom } from "~/utils/helpers";
+import { onZoom } from "~/utils/helpers";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useRoute } from "vue-router";
@@ -55,17 +57,20 @@ const AddToCart = defineAsyncComponent(() =>
   import("~/components/AddToCart.vue")
 );
 
+const image = ref(null);
+
 const Main = useProductsStore();
-
-const figure = ref(null);
-
-console.log(figure);
 
 const { singleProduct, ImageUrl, cartItems } = storeToRefs(Main);
 
 const { getProduct } = Main;
 
 const { id } = useRoute().params;
+
+const offZoom = (e) => {
+  image.value.style.transformOrigin = `center center`;
+  image.value.style.transform = "scale(1)";
+};
 
 onMounted(() => {
   getProduct(id);
@@ -79,11 +84,8 @@ figure.goOnZoom {
   cursor: zoom-in;
 }
 figure.goOnZoom img {
-  transition: opacity 0.5s;
-  display: block;
+  transform-origin: center center;
+  object-fit: cover;
   width: 100%;
-}
-figure.goOnZoom img:hover {
-  opacity: 0;
 }
 </style>

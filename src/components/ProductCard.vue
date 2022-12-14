@@ -99,10 +99,8 @@ const cart = useCartStore();
 
 const { products, cartItems } = storeToRefs(productt);
 
-const { showCart } = storeToRefs(cart);
-
-const { showcart } = cart;
-const { getProductId, addToCart } = productt;
+const { showcart, addToCart } = cart;
+const { getProductId } = productt;
 
 defineProps({
   products: Array,

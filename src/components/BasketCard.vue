@@ -1,13 +1,15 @@
 <script setup>
 import { useProductsStore } from "~/store/useProductsStore";
+import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 
 const product = useProductsStore();
+const cart = useCartStore();
 
 const { cartItems, confirmDelete, test, id } = storeToRefs(product);
 
-const { incrementQuantity, decrementQuantity, removeFromCart, getProductId } =
-  product;
+const { getProductId } = product;
+const { incrementQuantity, decrementQuantity, removeFromCart } = cart;
 
 const props = defineProps({
   items: Array,

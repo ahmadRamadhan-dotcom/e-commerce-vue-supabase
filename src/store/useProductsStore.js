@@ -1,8 +1,6 @@
 import { defineStore } from "pinia";
 import { supabase } from "~/supabase";
 
-import Swal from "sweetalert2";
-
 export const useProductsStore = defineStore("main", {
   state: () => ({
     products: [],
@@ -62,101 +60,6 @@ export const useProductsStore = defineStore("main", {
         }
       } catch (error) {
         this.error = error;
-      }
-    },
-    addToCart(item) {
-      const index = this.cartItems.find((i) => i.id === item.id);
-      if (index) {
-        Swal.fire({
-          icon: "success",
-          title: "Your item has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        index.quantity++;
-      } else {
-        Swal.fire({
-          icon: "success",
-          title: "Your item has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        this.cartItems.push({ ...item, quantity: 1 });
-      }
-    },
-    incrementQuantity(item) {
-      let index = this.cartItems.findIndex((product) => product.id === item.id);
-      if (index !== -1) {
-        this.cartItems[index].quantity += 1;
-      }
-    },
-    decrementQuantity(item) {
-      let index = this.cartItems.findIndex((product) => product.id === item.id);
-      if (index !== -1) {
-        this.cartItems[index].quantity -= 1;
-        if (this.cartItems[index].quantity === 0) {
-          this.cartItems = this.cartItems.filter(
-            (product) => product.id !== item.id
-          );
-        }
-      }
-    },
-    removeFromCart(item) {
-      const that = this;
-      Swal.fire({
-        title: "Are you sure to delete this product?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          that.confirmDelete = true;
-          if (that.confirmDelete) {
-            this.cartItems = this.cartItems.filter(
-              (product) => product.id !== item.id
-            );
-          }
-          Swal.fire("Deleted!", "Your prduct has been deleted.", "success");
-        }
-      });
-    },
-    emptyCart() {
-      const that = this;
-      // when the cart is empty
-      if (that.cartItems.length == 0) {
-        Swal.fire({
-          icon: "error",
-          title: "Opps ...",
-          text: "You cannot do that, because the cart is still empty",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        // the cart > 0
-        Swal.fire({
-          title: "Are you sure to delete all product?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            that.confirmDelete = true;
-            if (that.confirmDelete) {
-              Swal.fire(
-                "Deleted!",
-                "Your prducts has been deleted.",
-                "success"
-              );
-              this.cartItems.splice(0);
-            }
-          }
-        });
       }
     },
     filteredProduct(id) {

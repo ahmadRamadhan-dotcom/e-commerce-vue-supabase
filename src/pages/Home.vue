@@ -11,7 +11,9 @@
       </p>
       <ChangeListOrGrid />
     </div>
+    <p class="text-sm text-black/70 mt-3">Scroll to get more product</p>
     <div
+      ref="el"
       class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-0 xl:grid-cols-5"
     >
       <ProductCard :products="products" />
@@ -22,7 +24,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
-import { onMounted, ref, defineAsyncComponent } from "vue";
+import { onMounted, ref, toRefs, defineAsyncComponent } from "vue";
 
 const Hero = defineAsyncComponent(() => import("~/components/home/Hero.vue"));
 const ChangeListOrGrid = defineAsyncComponent(() =>
@@ -34,6 +36,8 @@ const BreadCumb = defineAsyncComponent(() =>
 const ProductCard = defineAsyncComponent(() =>
   import("~/components/ProductCard.vue")
 );
+
+const totalProduct = 99;
 
 const main = useProductsStore();
 
