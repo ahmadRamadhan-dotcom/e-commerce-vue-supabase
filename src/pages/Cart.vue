@@ -3,6 +3,8 @@ import { useCartStore } from "~/store/useCartStore";
 import { storeToRefs } from "pinia";
 import { computed, defineAsyncComponent } from "vue";
 
+import Swal from "sweetalert2";
+
 const CheckoutNow = defineAsyncComponent(() =>
   import("~/components/CheckoutNow.vue")
 );

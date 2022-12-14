@@ -21,6 +21,7 @@ export const useProductsStore = defineStore("main", {
         let { data, error, status } = await supabase
           .from("product")
           .select("*")
+          .limit(40)
           .order("id", { ascending: true });
         if (data) {
           this.products = data;

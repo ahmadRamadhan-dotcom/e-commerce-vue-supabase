@@ -11,7 +11,6 @@
       </p>
       <ChangeListOrGrid />
     </div>
-    <p class="text-sm text-black/70 mt-3">Scroll to get more product</p>
     <div
       ref="el"
       class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-0 xl:grid-cols-5"

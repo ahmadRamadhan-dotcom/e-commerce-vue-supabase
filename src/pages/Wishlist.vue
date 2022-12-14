@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, computed } from "vue";
 import { useWishlistStore } from "~/store/useWishlistStore";
 import { storeToRefs } from "pinia";
 
@@ -10,6 +10,14 @@ const TableData = defineAsyncComponent(() =>
 const wishlist = useWishlistStore();
 
 const { wishListItems } = storeToRefs(wishlist);
+
+const dataOrNoData = computed(() => {
+  return wishListItems.value.length ? wishListItems.value.length : 0;
+});
+
+const noData = computed(() => {
+  return wishListItems.value >= 0;
+});
 </script>
 
 <template>
@@ -19,8 +27,13 @@ const { wishListItems } = storeToRefs(wishlist);
     <div>
       <span class="text-3xl font-bold">My Wishlist </span>
       <p class="text-black/70 font-medium text-sm mt-2">
-        There are {{ wishListItems.length ? wishListItems.length : 0 }} products
-        in this wishlist.
+        There are {{ dataOrNoData }} products in this wishlist.
+      </p>
+      <p v-if="noData" class="text-black text-xl mt-3">
+        You wishlist still empty
+        <router-link to="/" class="hover:underline text-blue-500"
+          >continue shopping</router-link
+        >
       </p>
       <div class="h-[70vh] sm:h-full overflow-auto">
         <TableData :items="wishListItems" />

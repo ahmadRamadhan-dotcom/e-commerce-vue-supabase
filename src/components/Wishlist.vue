@@ -7,8 +7,6 @@ import { storeToRefs } from "pinia";
 const wishlist = useWishlistStore();
 
 const { wishListItems } = storeToRefs(wishlist);
-
-console.log(wishListItems);
 </script>
 
 <template>

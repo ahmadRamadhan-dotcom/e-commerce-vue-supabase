@@ -26,7 +26,7 @@ const props = defineProps({
     <td class="py-4 px-6">
       <span
         class="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-600 text-white font-bold"
-        >Green</span
+        >In Stock</span
       >
     </td>
     <td class="py-4 px-3">

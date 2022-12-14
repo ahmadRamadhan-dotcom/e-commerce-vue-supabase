@@ -8,12 +8,7 @@
       class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10 xl:grid-cols-2 xl:gap-12"
     >
       <div class="">
-        <figure
-          class="border border-gray-300 goOnZoom"
-          @mousemove="onZoom"
-          @mouseover="onZoom"
-          @mouseleave="offZoom"
-        >
+        <figure class="border border-gray-300 goOnZoom">
           <img
             alt="large_image"
             class="shadow-sm rounded-md"
@@ -67,25 +62,7 @@ const { getProduct } = Main;
 
 const { id } = useRoute().params;
 
-const offZoom = (e) => {
-  image.value.style.transformOrigin = `center center`;
-  image.value.style.transform = "scale(1)";
-};
-
 onMounted(() => {
   getProduct(id);
 });
 </script>
-
-<style scoped>
-figure.goOnZoom {
-  position: relative;
-  overflow: hidden;
-  cursor: zoom-in;
-}
-figure.goOnZoom img {
-  transform-origin: center center;
-  object-fit: cover;
-  width: 100%;
-}
-</style>

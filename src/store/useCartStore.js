@@ -14,6 +14,7 @@ export const useCartStore = defineStore("cart", () => {
   const showCart = ref(false);
   const cartItems = ref([]);
   const confirmDelete = ref(false);
+  const testData = ref(null);
 
   // actions
   const showcart = () => {
@@ -51,11 +52,28 @@ export const useCartStore = defineStore("cart", () => {
   const decrementQuantity = (item) => {
     let index = cartItems.value.findIndex((product) => product.id === item.id);
     if (index !== -1) {
-      cartItems.value[index].quantity -= 1;
-      if (cartItems.value[index].quantity === 0) {
-        cartItems.value = cartItems.value.filter(
-          (product) => product.id !== item.id
-        );
+      if (cartItems.value[index].quantity === 1) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            confirmDelete.value = true;
+            if (confirmDelete) {
+              cartItems.value = cartItems.value.filter(
+                (product) => product.id !== item.id
+              );
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          }
+        });
+      } else {
+        cartItems.value[index].quantity -= 1;
       }
     }
   };

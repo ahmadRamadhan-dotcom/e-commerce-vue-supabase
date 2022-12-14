@@ -10,7 +10,7 @@ import CheckoutNow from "~/components/CheckoutNow.vue";
 const cart = useCartStore();
 const product = useProductsStore();
 
-const { showCart, cartItems } = storeToRefs(cart);
+const { showCart, cartItems, testData } = storeToRefs(cart);
 const {} = storeToRefs(product);
 
 const { emptyCart } = cart;
@@ -34,7 +34,7 @@ const hideCart = () => {
     >
       <div class="flex justify-between p-3 border-b border-gray-300 pb-5">
         <div class="select-none">
-          <span class="font-semibold text-[22px]">Shop Cart</span>
+          <span class="font-semibold text-[22px]">Your Cart </span>
           <p class="text-black/50 text-[12px] font-medium">
             Location in 900080
           </p>

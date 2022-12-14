@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, computed } from "vue";
 
 const TableItem = defineAsyncComponent(() =>
   import("~/components/whilist/TableItem.vue")
@@ -7,6 +7,10 @@ const TableItem = defineAsyncComponent(() =>
 
 const props = defineProps({
   items: Array,
+});
+
+const noData = computed(() => {
+  return props.items.length == 0;
 });
 </script>
 
