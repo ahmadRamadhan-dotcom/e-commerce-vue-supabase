@@ -15,7 +15,7 @@ const {} = storeToRefs(product);
 const { showcart } = cart;
 
 defineProps({
-  products: Array,
+  products: Object,
 });
 </script>
 
@@ -49,7 +49,7 @@ defineProps({
       <div id="price" class="text-black/70 font-medium mt-7">
         ${{ product.price }}
       </div>
-      <ButtonViewandWhislist />
+      <ButtonViewandWhislist :items="product" />
       <AddToCart :products="product" />
     </div>
   </article>

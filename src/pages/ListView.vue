@@ -19,7 +19,7 @@ const main = useProductsStore();
 const header = useHeaderStore();
 
 const { products, productLength } = storeToRefs(main);
-const { getProducts, filteredProduct } = main;
+const { getProducts } = main;
 const { openHeader } = storeToRefs(header);
 
 const overflowYHidden = () => {

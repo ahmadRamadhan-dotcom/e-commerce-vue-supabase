@@ -42,7 +42,5 @@ const product = useProductsStore();
 
 const { showCart } = storeToRefs(cart);
 
-const { addToCart } = product;
-
-const { showcart } = cart;
+const { showcart, addToCart } = cart;
 </script>

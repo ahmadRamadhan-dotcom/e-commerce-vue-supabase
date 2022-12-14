@@ -62,10 +62,6 @@ export const useProductsStore = defineStore("main", {
         this.error = error;
       }
     },
-    filteredProduct(id) {
-      const data = this.products.filter((product) => product.id === id);
-      this.singleProduct = data;
-    },
     getProductId(id) {
       this.id = id;
     },

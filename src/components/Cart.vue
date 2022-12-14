@@ -1,5 +1,5 @@
 <template>
-  <button id="cart" class="relative" @click="showcart">
+  <button id="cart" class="relative" @click="showcart" title="Cart">
     <img :src="cart" alt="" />
     <span
       class="bg-red-500 absolute -top-3 -right-3 px-2 font-mediumtext-center text-white rounded-full text-[12px]"

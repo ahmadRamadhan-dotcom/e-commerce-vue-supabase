@@ -17,7 +17,6 @@ export const useCartStore = defineStore("cart", () => {
 
   // actions
   const showcart = () => {
-    console.log(products.value);
     return (showCart.value = !showCart.value);
   };
 

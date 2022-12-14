@@ -7,7 +7,7 @@
         <img src="../assets/tokopedia.svg" alt="header_logo" />
       </router-link>
       <div class="flex items-center gap-4 justify-end">
-        <Whislist />
+        <WishList />
         <Cart />
       </div>
     </div>
@@ -15,6 +15,6 @@
 </template>
 
 <script setup>
-import Whislist from "~/components/Whislist.vue";
+import WishList from "~/components/Wishlist.vue";
 import Cart from "~/components/Cart.vue";
 </script>

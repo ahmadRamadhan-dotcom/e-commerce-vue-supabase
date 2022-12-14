@@ -1,6 +1,7 @@
 <script setup>
 import { useModalStore } from "~/store/useModalStore";
 import { useProductsStore } from "~/store/useProductsStore";
+import { useWishlistStore } from "~/store/useWishlistStore";
 import { storeToRefs } from "pinia";
 
 const props = defineProps({
@@ -9,12 +10,14 @@ const props = defineProps({
 
 const data = useModalStore();
 const prodtuctt = useProductsStore();
+const wishlist = useWishlistStore();
 
 const { products } = storeToRefs(prodtuctt);
-
 const { modal } = storeToRefs(data);
 
 const { getProduct } = prodtuctt;
+const { addToWishList } = wishlist;
+
 const showModal = () => {
   modal.value = !modal.value;
 };
@@ -59,6 +62,7 @@ const showModal = () => {
     <div
       id="container"
       class="bg-white relative hover:bg-[#0aad0a] hover:text-white w-8 h-7 flex justify-center items-center rounded-md"
+      @click="addToWishList(product)"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +77,7 @@ const showModal = () => {
         />
       </svg>
       <div class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md">
-        <p class="text-center text-white text-[12px]">Whislist</p>
+        <p class="text-center text-white text-[12px]">Wishlist</p>
       </div>
     </div>
   </div>

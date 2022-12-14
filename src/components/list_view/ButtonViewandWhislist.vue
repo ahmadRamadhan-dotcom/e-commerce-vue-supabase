@@ -1,13 +1,19 @@
 <script setup>
 import { useModalStore } from "~/store/useModalStore";
 import { useProductsStore } from "~/store/useProductsStore";
+import { useWishlistStore } from "~/store/useWishlistStore";
 import { storeToRefs } from "pinia";
 
-const data = useModalStore();
+const props = defineProps({
+  items: Object,
+});
 
+const data = useModalStore();
 const product = useProductsStore();
+const wishlist = useWishlistStore();
 
 const { getProductId } = product;
+const { addToWishList } = wishlist;
 
 const { modal } = storeToRefs(data);
 </script>
@@ -36,9 +42,12 @@ const { modal } = storeToRefs(data);
         <p class="text-center text-white text-[12px]">View</p>
       </div>
     </div>
-    <div
+    <button
+      type="button"
+      aria-label="add_to_wishlist"
       id="container"
       class="bg-white relative hover:bg-gray-300 hover:text-black/70 text-black/50 w-8 h-7 flex justify-center items-center rounded-md border border-gray-300"
+      @click="addToWishList(items)"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +64,7 @@ const { modal } = storeToRefs(data);
       <div class="absolute tooltip hidden -top-7 bg-black py-1 px-4 rounded-md">
         <p class="text-center text-white text-[12px]">Whislist</p>
       </div>
-    </div>
+    </button>
   </div>
 </template>
 
