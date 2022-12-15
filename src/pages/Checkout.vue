@@ -87,14 +87,6 @@ const { cartItems } = storeToRefs(cart);
           </div>
           <DeliveryInstructions />
           <PaymentMethod />
-          <div class="grid place-content-end mt-5">
-            <button
-              type="button"
-              class="bg-green-600 text-sm rounded-md px-3 py-2 text-white"
-            >
-              Place order
-            </button>
-          </div>
         </div>
         <div
           class="border border-gray-300 rounded-md h-[30em] overflow-auto"

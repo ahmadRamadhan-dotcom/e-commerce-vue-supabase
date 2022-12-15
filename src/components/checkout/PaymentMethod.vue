@@ -36,5 +36,14 @@ const CashOnDelivery = defineAsyncComponent(() =>
     <PaymentWithPaypal />
     <CreditCard />
     <CashOnDelivery />
+    <div class="grid place-content-end mt-5">
+      <router-link
+        to="/success"
+        type="button"
+        class="bg-green-600 text-sm rounded-md px-3 py-2 text-white"
+      >
+        Place order
+      </router-link>
+    </div>
   </div>
 </template>

@@ -2,7 +2,13 @@
 import { useProductsStore } from "~/store/useProductsStore";
 import { useHeaderStore } from "~/store/useHeaderStore";
 import { storeToRefs } from "pinia";
-import { watchEffect, onMounted, defineAsyncComponent, ref } from "vue";
+import {
+  watchEffect,
+  onMounted,
+  defineAsyncComponent,
+  ref,
+  computed,
+} from "vue";
 
 const Hero = defineAsyncComponent(() => import("~/components/home/Hero.vue"));
 const ChangeListOrGrid = defineAsyncComponent(() =>
@@ -18,7 +24,7 @@ const ProductCard = defineAsyncComponent(() =>
 const main = useProductsStore();
 const header = useHeaderStore();
 
-const { products, productLength } = storeToRefs(main);
+const { products, productLength, keyword } = storeToRefs(main);
 const { getProducts } = main;
 const { openHeader } = storeToRefs(header);
 
@@ -39,11 +45,20 @@ if (products.value == 0) {
     getProducts();
   });
 }
+
+const filterProduct = computed(() => {
+  return products.value.filter((item) => {
+    return (
+      item.product_name.toLowerCase().includes(keyword.value.toLowerCase()) ||
+      item.category.toLowerCase().includes(keyword.value.toLowerCase())
+    );
+  });
+});
 </script>
 
 <template>
   <div
-    class="mx-auto h-[500vh] relative w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px]"
+    class="mx-auto pb-7 relative w-11/12 sm:w-9/12 md:w-11/12 xl:w-[1130px] 2xl:w-[1300px]"
   >
     <div class="lg:grid lg:grid-cols-4 lg:gap-7">
       <LeftSection />
@@ -82,7 +97,7 @@ if (products.value == 0) {
             </button>
           </div>
         </div>
-        <ProductCard :products="products" />
+        <ProductCard :products="filterProduct" />
       </div>
     </div>
   </div>

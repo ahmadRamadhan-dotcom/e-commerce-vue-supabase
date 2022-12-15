@@ -17,6 +17,7 @@
       <input
         type="number"
         name="card_number"
+        required
         class="border border-gray-300 rounded-md py-1 focus:outline-none focus:ring focus:ring-green-300 focus:transition focus:duration-300 pl-5 text-sm text-black/70"
       />
     </div>
@@ -34,6 +35,7 @@
         <input
           type="text"
           placeholder="Expire date"
+          required
           class="border border-gray-300 rounded-md min-h-[2em] pl-5 placeholder:text-sm focus:outline-none focus:ring focus:ring-green-300 focus:transition focus:duration-300 text-sm text-black/70 mt-2 w-full md:w-32"
         />
       </div>
@@ -42,6 +44,7 @@
         <input
           type="password"
           placeholder="**"
+          required
           class="border border-gray-300 rounded-md min-h-[2em] pl-5 placeholder:text-sm focus:outline-none focus:ring focus:ring-green-300 focus:transition focus:duration-300 text-sm text-black/70 mt-2 w-full md:w-24"
         />
       </div>

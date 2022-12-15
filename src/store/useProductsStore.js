@@ -13,7 +13,7 @@ export const useProductsStore = defineStore("main", {
     productLength: null,
     confirmDelete: false,
     id: 0,
-    test: [],
+    keyword: "",
   }),
   actions: {
     async getProducts() {
