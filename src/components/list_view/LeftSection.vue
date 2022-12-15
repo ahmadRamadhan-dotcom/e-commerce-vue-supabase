@@ -1,13 +1,44 @@
 <script setup>
 import { ref, computed } from "vue";
+import { getMax, getMin } from "~/utils/helpers";
+import { useProductsStore } from "~/store/useProductsStore";
+import { storeToRefs } from "pinia";
+
+const main = useProductsStore();
+
+const { products } = storeToRefs(main);
+
+const checkboxData = [
+  {
+    id: 1,
+    name: "Tech",
+  },
+  {
+    id: 2,
+    name: "Snack",
+  },
+  {
+    id: 3,
+    name: "Medicine",
+  },
+  {
+    id: 4,
+    name: "Laptop",
+  },
+  {
+    id: 5,
+    name: "Television",
+  },
+];
 
 const keyword = ref("");
+const value = ref("");
 </script>
 
 <template>
   <section class="hidden lg:block mt-8">
     <div>
-      <p class="font-semibold">Search Product {{ keyword }}</p>
+      <p class="font-semibold">Search Product</p>
       <input
         v-model="keyword"
         type="text"
@@ -27,21 +58,6 @@ const keyword = ref("");
           >Default checkbox</label
         >
       </div>
-    </div>
-    <div class="mt-7">
-      <p class="font-semibold">Price</p>
-
-      <label
-        for="default-range"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >Default range</label
-      >
-      <input
-        id="default-range"
-        type="range"
-        class="w-full h-2 rounded-lg appearance-none cursor-pointer bg-[#0aad0a]"
-      />
-      <p class="mt-7 text-black/50 text-[13px]">Price $10</p>
     </div>
   </section>
 </template>

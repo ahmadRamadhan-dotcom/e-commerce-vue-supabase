@@ -25,8 +25,8 @@ const props = defineProps({
     <td class="py-4 px-6" id="amount">${{ item.price }}</td>
     <td class="py-4 px-6">
       <span
-        class="text-xs mr-2 px-2.5 py-0.5 rounded bg-green-600 text-white font-bold"
-        >In Stock</span
+        class="text-xs mr-2 px-2.5 text-[10px] py-0.5 rounded bg-green-600 text-white font-bold"
+        >Ready</span
       >
     </td>
     <td class="py-4 px-3">

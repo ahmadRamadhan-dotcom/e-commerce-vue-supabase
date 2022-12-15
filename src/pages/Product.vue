@@ -8,11 +8,11 @@
       class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10 xl:grid-cols-2 xl:gap-12"
     >
       <div class="">
-        <figure class="border border-gray-300 goOnZoom">
+        <figure class="border border-gray-300 goOnZoom overflow-hidden">
           <img
             alt="large_image"
-            class="shadow-sm rounded-md"
             id="image"
+            class="image shadow-sm rounded-md w-full object-cover origin-[center_center] h-full"
             ref="image"
             :src="data.imageUrl"
           />
@@ -24,7 +24,7 @@
         <div class="flex items-center gap-1 mt-3">
           <img src="../assets/star.svg" alt="star" />
           <p class="text-black/50 text-sm">
-            4.5 <span class="text-green-500 font-semibold">(50 reviews)</span>
+            4.5 <span class="text-green-500 font-semibold">(50 reviews) </span>
           </p>
         </div>
         <p id="price" class="mt-3 text-2xl font-bold">${{ data.price }}</p>
@@ -36,17 +36,10 @@
 </template>
 
 <script setup>
-import { onZoom } from "~/utils/helpers";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "~/store/useProductsStore";
 import { useRoute } from "vue-router";
-import {
-  onMounted,
-  watchEffect,
-  ref,
-  computed,
-  defineAsyncComponent,
-} from "vue";
+import { onMounted, ref, defineAsyncComponent } from "vue";
 
 const AddToCart = defineAsyncComponent(() =>
   import("~/components/AddToCart.vue")
@@ -56,7 +49,7 @@ const image = ref(null);
 
 const Main = useProductsStore();
 
-const { singleProduct, ImageUrl, cartItems } = storeToRefs(Main);
+const { singleProduct } = storeToRefs(Main);
 
 const { getProduct } = Main;
 

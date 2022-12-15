@@ -52,15 +52,17 @@ const filterCart = computed(() => {
     <div class="mt-14">
       <span class="font-bold text-3xl">Your Cart</span>
       <p class="text-black/70 font-medium mt-3 text-sm">Shopping in 900080</p>
-      <p class="font-bold text-black/70 mt-2">
-        Search product by product name/category
-      </p>
-      <input
-        type="text"
-        class="mt-3 border border-gray-300 rounded-sm pl-3 focus:ring focus:outline-none"
-        placeholder="Search product"
-        v-model="search"
-      />
+      <div v-if="cartItems.length > 0">
+        <p class="font-bold text-black/70 mt-2">
+          Search product by product name/category
+        </p>
+        <input
+          type="text"
+          class="mt-3 border border-gray-300 rounded-sm pl-3 focus:ring focus:outline-none"
+          placeholder="Search product"
+          v-model="search"
+        />
+      </div>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="lg:col-span-2 h-[70vh] overflow-auto">
           <CheckoutNow class="mb-3" />
@@ -99,6 +101,7 @@ const filterCart = computed(() => {
           <router-link
             class="mt-3 w-full p-3 rounded-md bg-[#0aad0a] text-white font-semibold flex items-center justify-between"
             id="checkout_button"
+            :disabled="true"
             aria-label="checkout_button"
             to="/checkout"
           >

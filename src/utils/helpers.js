@@ -17,4 +17,19 @@ const limitString = (string, length, end = "...") => {
   return string.length < length ? string : string.substring(0, length) + end;
 };
 
-export { onZoom, capitalizeFirstLetter, changeCommaToAnd, limitString };
+const getMin = (array) => {
+  return Math.min(...array.map((item) => item.price));
+};
+
+const getMax = (array) => {
+  return Math.max(...array.map((item) => item.price));
+};
+
+export {
+  onZoom,
+  capitalizeFirstLetter,
+  changeCommaToAnd,
+  limitString,
+  getMin,
+  getMax,
+};

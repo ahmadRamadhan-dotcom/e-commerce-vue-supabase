@@ -6,6 +6,7 @@
         <router-link
           to="/checkout"
           class="text-[#691717] font-bold hover:underline"
+          @click="hideCart"
         >
           checkout now!</router-link
         >
@@ -13,3 +14,16 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { useCartStore } from "~/store/useCartStore";
+import { storeToRefs } from "pinia";
+
+const cart = useCartStore();
+
+const { showCart } = storeToRefs(cart);
+
+const hideCart = () => {
+  showCart.value = !showCart.value;
+};
+</script>

@@ -2,7 +2,7 @@
 import { useProductsStore } from "~/store/useProductsStore";
 import { useHeaderStore } from "~/store/useHeaderStore";
 import { storeToRefs } from "pinia";
-import { watchEffect, onMounted, defineAsyncComponent } from "vue";
+import { watchEffect, onMounted, defineAsyncComponent, ref } from "vue";
 
 const Hero = defineAsyncComponent(() => import("~/components/home/Hero.vue"));
 const ChangeListOrGrid = defineAsyncComponent(() =>
@@ -34,9 +34,11 @@ watchEffect(() => {
   overflowYHidden();
 });
 
-onMounted(() => {
-  getProducts();
-});
+if (products.value == 0) {
+  onMounted(() => {
+    getProducts();
+  });
+}
 </script>
 
 <template>

@@ -36,15 +36,15 @@ const ProductCard = defineAsyncComponent(() =>
   import("~/components/ProductCard.vue")
 );
 
-const totalProduct = 99;
-
 const main = useProductsStore();
 
 const { products, productLength } = storeToRefs(main);
 
 const { getProducts } = main;
 
-onMounted(() => {
-  getProducts();
-});
+if (products.value == 0) {
+  onMounted(() => {
+    getProducts();
+  });
+}
 </script>
