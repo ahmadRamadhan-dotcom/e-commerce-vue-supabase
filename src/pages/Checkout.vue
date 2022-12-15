@@ -1,5 +1,7 @@
 <script setup>
 import { defineAsyncComponent } from "vue";
+import { useCartStore } from "~/store/useCartStore";
+import { storeToRefs } from "pinia";
 
 const AddAdress = defineAsyncComponent(() =>
   import("~/components/checkout/AddAddress.vue")
@@ -16,6 +18,10 @@ const PaymentMethod = defineAsyncComponent(() =>
 const OrderCart = defineAsyncComponent(() =>
   import("~/components/checkout/OrderCart.vue")
 );
+
+const cart = useCartStore();
+
+const { cartItems } = storeToRefs(cart);
 </script>
 
 <template>
@@ -91,13 +97,13 @@ const OrderCart = defineAsyncComponent(() =>
           </div>
         </div>
         <div
-          class="border border-gray-300 rounded-md h-[32em]"
+          class="border border-gray-300 rounded-md h-[30em] overflow-auto"
           id="order_detail"
         >
           <div class="border-b border-gray-300 pb-3 p-4">
             <p class="text-lg font-semibold">Order details</p>
           </div>
-          <OrderCart />
+          <OrderCart :cartItems="cartItems" />
         </div>
       </div>
     </div>
